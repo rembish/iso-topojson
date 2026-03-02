@@ -116,7 +116,7 @@ All 249 ISO 3166-1 alpha-2 entries with a meaningful geographic polygon are incl
 - Disputed / quasi-ISO (EH, PS, TW, XK)
 - And many more…
 
-Bouvet Island (BV), Heard Island (HM), and US Minor Outlying Islands (UM) appear as Point markers in `iso-a2-markers.json` only.
+Bouvet Island (BV) appears as a Point marker in `iso-a2-markers.json` only — Natural Earth 10m has no polygon for it. Heard Island (HM) and US Minor Outlying Islands (UM, 9 scattered atolls as a MultiPolygon) appear in both files.
 
 ## Build
 
