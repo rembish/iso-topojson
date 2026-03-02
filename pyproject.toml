@@ -1,0 +1,92 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "iso-topojson"
+version = "1.0.0"
+requires-python = ">=3.12"
+dependencies = [
+    "shapely>=2.1",
+    "geopandas>=1.1",
+    "fiona>=1.10",
+    "requests>=2.32",
+    "topojson>=1.10",
+    "pyproj>=3.7",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black>=25.1",
+    "ruff>=0.9",
+    "mypy>=1.15",
+    "pandas-stubs>=3.0",
+    "types-requests>=2.32",
+    "pytest>=8.3",
+    "pytest-mock>=3.14",
+    "pytest-cov>=6.0",
+    "coverage[toml]>=7.6",
+]
+
+[tool.black]
+line-length = 100
+target-version = ["py312"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "UP", "B", "SIM", "C4", "PTH", "RUF", "TCH", "ANN"]
+ignore = ["ANN401"]
+
+[tool.ruff.lint.per-file-ignores]
+"validate.py" = ["ANN"]
+"tests/*" = ["ANN", "S101"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+disallow_any_generics = false
+
+[[tool.mypy.overrides]]
+module = [
+    "geopandas",
+    "geopandas.*",
+    "fiona",
+    "fiona.*",
+    "topojson",
+    "topojson.*",
+    "pyproj",
+    "pyproj.*",
+    "shapely",
+    "shapely.*",
+]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = [
+    "--strict-markers",
+    "--tb=short",
+    "--cov=src",
+    "--cov=validate",
+    "--cov-report=term-missing",
+    "--cov-fail-under=80",
+]
+markers = [
+    "slow: slow tests",
+    "integration: require real shapefile data on disk",
+]
+
+[tool.coverage.run]
+branch = true
+omit = ["src/__init__.py", "src/types.py", "src/download.py", ".venv/*", "tests/*"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "if __name__",
+    "if TYPE_CHECKING:",
+    "raise NotImplementedError",
+]

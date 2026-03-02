@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ISO-A2 — World Map Preview</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #1a1a2e; overflow: hidden; font-family: system-ui, -apple-system, sans-serif; }
+  svg { display: block; }
+  .land { stroke: #2a2a4a; stroke-width: 0.4px; cursor: pointer; transition: opacity 0.15s; }
+  .land:hover { stroke: #fff; stroke-width: 1.2px; opacity: 0.85; }
+  .point-marker { stroke: #2a2a4a; stroke-width: 0.4px; cursor: pointer; transition: opacity 0.15s; }
+  .point-marker:hover { stroke: #2a2a4a; stroke-width: 0.8px; opacity: 0.85; }
+
+  #tooltip {
+    position: fixed; pointer-events: none; display: none;
+    background: rgba(10, 10, 30, 0.92); color: #e0e0e0;
+    border: 1px solid rgba(255,255,255,0.15); border-radius: 6px;
+    padding: 10px 14px; font-size: 13px; line-height: 1.5;
+    max-width: 280px; z-index: 100;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  }
+  #tooltip .tt-name { font-weight: 600; font-size: 14px; color: #fff; margin-bottom: 4px; }
+  #tooltip .tt-row { color: #aaa; }
+  #tooltip .tt-row span { color: #ddd; }
+
+  #legend {
+    position: fixed; bottom: 16px; left: 16px;
+    background: rgba(10, 10, 30, 0.88); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px; padding: 12px 16px; z-index: 50;
+    font-size: 12px; color: #ccc; max-height: calc(100vh - 32px); overflow-y: auto;
+  }
+  #legend h3 { font-size: 13px; color: #fff; margin-bottom: 8px; font-weight: 600; }
+  .legend-item { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+  .legend-swatch { width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0; }
+
+  #info {
+    position: fixed; top: 16px; right: 16px;
+    background: rgba(10, 10, 30, 0.88); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px; padding: 10px 16px; z-index: 50;
+    font-size: 12px; color: #999;
+  }
+  #info strong { color: #fff; }
+
+  #toggle {
+    position: fixed; top: 16px; left: 16px;
+    background: rgba(10, 10, 30, 0.88); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px; padding: 8px 10px; z-index: 50;
+    display: flex; gap: 6px;
+  }
+  .toggle-btn {
+    background: transparent; border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px; color: #aaa; cursor: pointer;
+    font-size: 12px; padding: 5px 14px; transition: all 0.15s;
+  }
+  .toggle-btn:hover { border-color: rgba(255,255,255,0.4); color: #ddd; }
+  .toggle-btn.active {
+    background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.5); color: #fff;
+  }
+
+  #loading {
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    color: #888; font-size: 16px; z-index: 200;
+  }
+</style>
+</head>
+<body>
+
+<div id="loading">Loading ISO-A2 TopoJSON...</div>
+<div id="tooltip"></div>
+<div id="toggle">
+  <button class="toggle-btn active" id="btn-full"    onclick="switchFile('output/iso-a2.json',         'btn-full'   )">Full</button>
+  <button class="toggle-btn"        id="btn-markers" onclick="switchFile('output/iso-a2-markers.json', 'btn-markers')">Markers</button>
+</div>
+<div id="legend"></div>
+<div id="info"></div>
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://unpkg.com/topojson-client@3"></script>
+<script>
+(async function() {
+  const typeColors = {
+    "country":    "#66bb6a",
+    "territory":  "#4fc3f7",
+    "disputed":   "#ef5350",
+    "dependency": "#ffa726",
+  };
+
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+
+  const svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+  const g = svg.append("g");
+
+  const zoom = d3.zoom()
+    .scaleExtent([1, 20])
+    .on("zoom", (e) => g.attr("transform", e.transform));
+  svg.call(zoom);
+
+  let projection = null;
+  let path = null;
+
+  const graticuleNode = g.append("path")
+    .datum(d3.geoGraticule10())
+    .attr("fill", "none")
+    .attr("stroke", "rgba(255,255,255,0.06)")
+    .attr("stroke-width", 0.5);
+
+  const sphereNode = g.append("path")
+    .datum({ type: "Sphere" })
+    .attr("fill", "none")
+    .attr("stroke", "rgba(255,255,255,0.12)")
+    .attr("stroke-width", 0.8);
+
+  const tooltip = d3.select("#tooltip");
+
+  function showTooltip(event, d) {
+    const p = d.properties;
+    tooltip.style("display", "block").html(`
+      <div class="tt-name">${p.name}</div>
+      <div class="tt-row">ISO A2: <span>${p.iso_a2}</span></div>
+      ${p.iso_a3 ? `<div class="tt-row">ISO A3: <span>${p.iso_a3}</span></div>` : ""}
+      <div class="tt-row">Sovereign: <span>${p.sovereign || "—"}</span></div>
+      <div class="tt-row">Type: <span>${p.type}</span></div>
+      ${p.area_km2 != null ? `<div class="tt-row">Area: <span>${p.area_km2.toLocaleString()} km²</span></div>` : ""}
+    `);
+    moveTooltip(event);
+  }
+
+  function moveTooltip(event) {
+    let x = event.clientX + 14;
+    let y = event.clientY + 14;
+    const rect = tooltip.node().getBoundingClientRect();
+    if (x + rect.width > window.innerWidth - 8) x = event.clientX - rect.width - 14;
+    if (y + rect.height > window.innerHeight - 8) y = event.clientY - rect.height - 14;
+    tooltip.style("left", x + "px").style("top", y + "px");
+  }
+
+  function hideTooltip() {
+    tooltip.style("display", "none");
+  }
+
+  async function loadAndRender(url) {
+    document.getElementById("loading").style.display = "block";
+    document.getElementById("loading").textContent = "Loading…";
+
+    let topology;
+    try {
+      const resp = await fetch(url);
+      if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+      topology = await resp.json();
+    } catch (e) {
+      document.getElementById("loading").textContent = `Failed to load: ${e.message}`;
+      return;
+    }
+    document.getElementById("loading").style.display = "none";
+
+    const allFeatures = Object.values(topology.objects)
+      .flatMap(obj => topojson.feature(topology, obj).features);
+
+    const polygonFeatures = allFeatures.filter(
+      f => f.geometry && (f.geometry.type === "Polygon" || f.geometry.type === "MultiPolygon")
+    );
+    const pointFeatures = allFeatures.filter(
+      f => f.geometry && f.geometry.type === "Point"
+    );
+
+    if (!projection) {
+      projection = d3.geoNaturalEarth1()
+        .fitExtent([[20, 20], [width - 20, height - 20]], {
+          type: "FeatureCollection",
+          features: polygonFeatures.length > 0 ? polygonFeatures : allFeatures
+        });
+      path = d3.geoPath().projection(projection);
+      graticuleNode.attr("d", path);
+      sphereNode.attr("d", path);
+    }
+
+    g.selectAll(".land").remove();
+    g.selectAll(".point-marker").remove();
+    hideTooltip();
+
+    g.selectAll(".land")
+      .data(polygonFeatures)
+      .join("path")
+      .attr("class", "land")
+      .attr("d", path)
+      .attr("fill", d => typeColors[d.properties.type] || "#666")
+      .attr("fill-opacity", 0.7)
+      .on("mouseenter", showTooltip)
+      .on("mousemove", moveTooltip)
+      .on("mouseleave", hideTooltip);
+
+    g.selectAll(".point-marker")
+      .data(pointFeatures)
+      .join("circle")
+      .attr("class", "point-marker")
+      .attr("r", 3)
+      .attr("cx", d => {
+        const coords = d.geometry.coordinates;
+        const projected = projection(coords);
+        return projected ? projected[0] : null;
+      })
+      .attr("cy", d => {
+        const coords = d.geometry.coordinates;
+        const projected = projection(coords);
+        return projected ? projected[1] : null;
+      })
+      .attr("fill", d => typeColors[d.properties.type] || "#666")
+      .attr("fill-opacity", 0.85)
+      .on("mouseenter", showTooltip)
+      .on("mousemove", moveTooltip)
+      .on("mouseleave", hideTooltip);
+
+    const legendEl = document.getElementById("legend");
+    let legendHTML = "<h3>Feature Types</h3>";
+    const typeCounts = {};
+    allFeatures.forEach(f => {
+      const t = f.properties.type;
+      typeCounts[t] = (typeCounts[t] || 0) + 1;
+    });
+    for (const [type, color] of Object.entries(typeColors)) {
+      const count = typeCounts[type] || 0;
+      legendHTML += `<div class="legend-item">
+        <div class="legend-swatch" style="background:${color}"></div>
+        <span>${type} (${count})</span>
+      </div>`;
+    }
+    legendEl.innerHTML = legendHTML;
+
+    const sizeKb = Math.round(JSON.stringify(topology).length / 1024);
+    document.getElementById("info").innerHTML =
+      `<strong>ISO-A2</strong> &mdash; ${allFeatures.length} features &middot;
+       ${polygonFeatures.length} polygons &middot; ${pointFeatures.length} markers &middot;
+       ~${sizeKb} KB`;
+  }
+
+  let activeBtn = "btn-full";
+  window.switchFile = async function(url, btnId) {
+    if (btnId === activeBtn) return;
+    document.getElementById(activeBtn).classList.remove("active");
+    document.getElementById(btnId).classList.add("active");
+    activeBtn = btnId;
+    await loadAndRender(url);
+  };
+
+  await loadAndRender("output/iso-a2.json");
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "name": "@rembish/iso-topojson",
+  "version": "1.0.0",
+  "description": "TopoJSON world map keyed by ISO 3166-1 alpha-2 codes (~249 features)",
+  "main": "iso-a2.json",
+  "files": [
+    "iso-a2.json",
+    "iso-a2-markers.json"
+  ],
+  "keywords": [
+    "topojson",
+    "geojson",
+    "world",
+    "map",
+    "iso",
+    "iso3166",
+    "countries",
+    "territories"
+  ],
+  "license": "CC0-1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rembish/iso-topojson.git"
+  },
+  "homepage": "https://github.com/rembish/iso-topojson"
+}
