@@ -103,7 +103,7 @@ svg.selectAll("circle")
 
 ## Coverage
 
-All 249 ISO 3166-1 alpha-2 entries with a meaningful geographic polygon are included, plus Kosovo (`XK`, quasi-ISO). Overseas territories, Crown dependencies, and special administrative regions are **separate polygons**, not merged into their sovereign state:
+All 250 entries (249 ISO 3166-1 alpha-2 + Kosovo `XK` quasi-ISO) are included as polygons. Overseas territories, Crown dependencies, and special administrative regions are **separate polygons**, not merged into their sovereign state:
 
 - French overseas departments and territories (GF, GP, MQ, RE, YT, PM, BL, MF, NC, PF, TF, WF)
 - British Overseas Territories (AI, BM, FK, GI, GG, GS, IO, IM, JE, KY, MS, SH, TC, VG)

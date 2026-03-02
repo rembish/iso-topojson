@@ -107,11 +107,10 @@ def test_specific_entries() -> None:
     assert pn["strategy"] == "subunit"
     assert pn["su_a3"] == "PCN"
 
-    # Tokelau — point
+    # Tokelau — land_bbox (three atolls from ne_10m_land)
     tk = dests["TK"]
-    assert tk["strategy"] == "point"
-    assert isinstance(tk["lat"], float)
-    assert isinstance(tk["lon"], float)
+    assert tk["strategy"] == "land_bbox"
+    assert tk["bbox"] == (-173.0, -10.0, -170.5, -8.0)
 
     # Gibraltar — subunit
     gi = dests["GI"]

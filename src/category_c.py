@@ -226,8 +226,8 @@ def extract_land_bbox(dest: IsoDestination) -> IsoFeature | None:
 def generate_point(dest: IsoDestination) -> IsoFeature | None:
     """Generate a Point feature at specified coordinates.
 
-    Used for tiny territories like Pitcairn, Tokelau, Bouvet Island, etc.
-    that are too small for meaningful polygon representation at world scale.
+    Used for tiny territories like Pitcairn that have no polygon in any
+    Natural Earth layer at 10m scale.
 
     Args:
         dest: Destination config dict; must have ``lat`` and ``lon`` keys.
