@@ -30,6 +30,7 @@ type ExtractionStrategy = Literal[
     "group_remainder",
     "disputed",
     "island_bbox",
+    "land_bbox",
     "point",
 ]
 

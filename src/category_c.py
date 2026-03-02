@@ -4,9 +4,11 @@ group remainders, and point markers.
 
 from __future__ import annotations
 
+from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
 from shapely.geometry import Point
+from shapely.geometry import box as shapely_box
 from shapely.ops import unary_union
 
 from .utils import (
@@ -20,6 +22,8 @@ if TYPE_CHECKING:
     import geopandas as gpd
 
     from .types import Bbox, IsoDestination, IsoFeature
+
+_LAND_SHP = Path(__file__).resolve().parent.parent / "data" / "ne_10m_land.shp"
 
 
 def extract_disputed(
@@ -177,6 +181,46 @@ def extract_group_remainder(
         result = result.buffer(0)
 
     return to_feature(result, make_properties(dest))
+
+
+def extract_land_bbox(dest: IsoDestination) -> IsoFeature | None:
+    """Extract a polygon from the NE physical land layer by bounding box.
+
+    Used for territories absent from admin layers (e.g. Bouvet Island) that
+    nonetheless appear in the general ``ne_10m_land`` dataset.
+
+    Args:
+        dest: Destination config dict; must have a ``bbox`` key.
+
+    Returns:
+        A GeoJSON Feature dict, or None if the land layer is missing or
+        no geometry falls within the bbox.
+    """
+    import geopandas as gpd
+
+    bbox: Bbox | None = dest.get("bbox")
+    if not bbox:
+        return None
+
+    if not _LAND_SHP.exists():
+        print(f"  WARNING: ne_10m_land.shp not found — cannot extract {dest['name']}")
+        return None
+
+    west, south, east, north = bbox
+    bbox_geom = shapely_box(west, south, east, north)
+
+    land_gdf = gpd.read_file(_LAND_SHP)
+    matches = land_gdf[land_gdf.intersects(bbox_geom)]
+    if matches.empty:
+        print(f"  WARNING: No land polygons in bbox for {dest['name']}")
+        return None
+
+    merged = unary_union(matches.geometry.tolist())
+    clipped = merged.intersection(bbox_geom)
+    if clipped.is_empty:
+        return None
+
+    return to_feature(clipped, make_properties(dest))
 
 
 def generate_point(dest: IsoDestination) -> IsoFeature | None:

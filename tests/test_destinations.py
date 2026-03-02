@@ -50,7 +50,7 @@ def test_types_are_valid() -> None:
 
 def test_strategies_are_valid() -> None:
     """All strategy values are one of the known strategies."""
-    valid = {"direct", "subunit", "admin1", "group_remainder", "disputed", "island_bbox", "point"}
+    valid = {"direct", "subunit", "admin1", "group_remainder", "disputed", "island_bbox", "land_bbox", "point"}
     for d in get_destinations():
         assert d["strategy"] in valid, (
             f"[{d['iso_a2']}] invalid strategy: {d['strategy']!r}"

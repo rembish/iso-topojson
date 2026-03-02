@@ -32,7 +32,7 @@ BQ,Bonaire Sint Eustatius and Saba,territory,Netherlands,BES,535,direct,BES,,,,,
 BR,Brazil,country,Brazil,BRA,76,direct,BRA,,,,,,,,,,,
 BS,Bahamas,country,Bahamas,BHS,44,direct,BHS,,,,,,,,,,,
 BT,Bhutan,country,Bhutan,BTN,64,direct,BTN,,,,,,,,,,,
-BV,Bouvet Island,territory,Norway,BVT,74,point,,,,,,-54.43,3.38,,,,,1
+BV,Bouvet Island,territory,Norway,BVT,74,land_bbox,,,,,"3.2,-54.6,3.6,-54.2",,,,,,,
 BW,Botswana,country,Botswana,BWA,72,direct,BWA,,,,,,,,,,,
 BY,Belarus,country,Belarus,BLR,112,direct,BLR,,,,,,,,,,,
 BZ,Belize,country,Belize,BLZ,84,direct,BLZ,,,,,,,,,,,

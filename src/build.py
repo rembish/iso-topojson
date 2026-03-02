@@ -17,6 +17,7 @@ from .category_c import (
     extract_disputed,
     extract_group_remainder,
     extract_island_bbox,
+    extract_land_bbox,
     generate_point,
 )
 from .destinations import get_destinations
@@ -143,6 +144,9 @@ def _extract_feature(
 
     elif strategy == "island_bbox":
         return extract_island_bbox(dest, subunits, units, admin1)
+
+    elif strategy == "land_bbox":
+        return extract_land_bbox(dest)
 
     elif strategy == "point":
         return generate_point(dest)
