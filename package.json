@@ -17,7 +17,7 @@
     "countries",
     "territories"
   ],
-  "license": "CC0-1.0",
+  "license": "CC-BY-4.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/rembish/iso-topojson.git"
