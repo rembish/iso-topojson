@@ -1,6 +1,6 @@
 # iso-topojson
 
-Public-domain TopoJSON world map with **247 polygons** keyed by [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code.
+Public-domain TopoJSON world map with **250 polygons** keyed by [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code.
 
 No existing open-source solution covers this cleanly — `world-atlas` merges overseas territories into their sovereign states and uses ISO numeric codes, not alpha-2.
 
@@ -21,10 +21,10 @@ https://unpkg.com/@rembish/iso-topojson/iso-a2-markers.json
 
 | File | Size | Description |
 |------|------|-------------|
-| `iso-a2.json` | 203 KB | Full-detail TopoJSON, 247 polygon features |
+| `iso-a2.json` | 204 KB | Full-detail TopoJSON, 250 polygon features |
 | `iso-a2-markers.json` | 246 KB | Compact variant: tiny territories (< 500 km²) replaced with Point markers |
 
-In `iso-a2-markers.json` the ~50 smallest territories (Maldives, Malta, Liechtenstein, most Caribbean islands, etc.) appear as `Point` geometries with `"marker": true` in their properties. Bouvet Island, Heard Island, and US Minor Outlying Islands are point markers in this variant only — they are omitted from the full file. All other features share the same properties schema.
+In `iso-a2-markers.json` the ~50 smallest territories (Maldives, Malta, Liechtenstein, most Caribbean islands, etc.) appear as `Point` geometries with `"marker": true` in their properties. All features share the same properties schema.
 
 ## Usage
 
@@ -131,7 +131,7 @@ Full pipeline:
 1. **venv** — creates `.venv` and installs Python dependencies
 2. **check** — lint (`ruff`, `black`), type-check (`mypy`), tests (`pytest`, ≥ 80% coverage)
 3. **download** — fetches Natural Earth 10m shapefiles
-4. **build** — assembles 247 GeoJSON features via direct matches, subunit extractions, admin-1 merges, island bbox extractions, and disputed-area overlays → `output/merged.geojson`
+4. **build** — assembles 250 GeoJSON features via direct matches, subunit extractions, admin-1 merges, island bbox extractions, and disputed-area overlays → `output/merged.geojson`
 5. **simplify** — runs `mapshaper` at **3% vertex retention** → `output/iso-a2.json` (203 KB)
 6. **markers** — replaces polygons < 500 km² with centroid point markers → `output/iso-a2-markers.json` (246 KB)
 7. **validate** — checks all expected codes are present and valid
