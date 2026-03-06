@@ -142,6 +142,13 @@
       "TR-ISTANBUL": {"lon_max": 30.5}
     }
   },
+  "MY": {
+    "adm0_a3": "MYS",
+    "default": "MY-PENINSULA",
+    "overrides": {
+      "MY-BORNEO": {"names": ["Sabah", "Sarawak"]}
+    }
+  },
   "ID": {
     "adm0_a3": "IDN",
     "default": "ID-WEST",

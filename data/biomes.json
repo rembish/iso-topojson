@@ -455,6 +455,22 @@
     "aurora_zone": false,
     "description": "Ankara, Cappadocia, Konya, Pamukkale — hot-air balloons, fairy chimneys, continental extremes"
   },
+  "MY-PENINSULA": {
+    "country": "MY",
+    "name": "Peninsular Malaysia",
+    "lat": 3.1,
+    "lon": 101.7,
+    "aurora_zone": false,
+    "description": "Kuala Lumpur, Penang, Langkawi, Malacca — food capital, colonial heritage, tropical beaches"
+  },
+  "MY-BORNEO": {
+    "country": "MY",
+    "name": "Malaysian Borneo",
+    "lat": 5.9,
+    "lon": 116.1,
+    "aurora_zone": false,
+    "description": "Sabah, Sarawak, Mount Kinabalu — orangutans, rainforest, diving, opposite monsoon to peninsula"
+  },
   "ID-WEST": {
     "country": "ID",
     "name": "Western Indonesia",
