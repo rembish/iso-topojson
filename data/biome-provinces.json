@@ -1,0 +1,210 @@
+{
+  "NO": {
+    "adm0_a3": "NOR",
+    "default": "NO-SOUTH",
+    "exclude": {"names": ["Svalbard", "Bouvet Island"]},
+    "overrides": {
+      "NO-LAPLAND": {"lat_min": 65.0}
+    }
+  },
+  "SE": {
+    "adm0_a3": "SWE",
+    "default": "SE-SOUTH",
+    "overrides": {
+      "SE-LAPLAND": {"lat_min": 64.0}
+    }
+  },
+  "FI": {
+    "adm0_a3": "FIN",
+    "default": "FI-SOUTH",
+    "overrides": {
+      "FI-LAPLAND": {"names": ["Lapland"]}
+    }
+  },
+  "CL": {
+    "adm0_a3": "CHL",
+    "default": "CL-CENTRAL",
+    "overrides": {
+      "CL-NORTH": {"lat_min": -28.0},
+      "CL-SOUTH": {"lat_max": -44.0}
+    }
+  },
+  "AR": {
+    "adm0_a3": "ARG",
+    "default": "AR-PAMPAS",
+    "overrides": {
+      "AR-NORTH": {"lat_min": -28.0},
+      "AR-CUYO": {"names": ["Mendoza", "San Juan", "San Luis", "Neuquén", "Río Negro", "La Pampa"]},
+      "AR-PATAGONIA": {"names": ["Chubut", "Santa Cruz", "Tierra del Fuego"]}
+    }
+  },
+  "JP": {
+    "adm0_a3": "JPN",
+    "default": "JP-HONSHU",
+    "overrides": {
+      "JP-HOKKAIDO": {"names": ["Hokkaidō"]},
+      "JP-OKINAWA": {"names": ["Okinawa"]}
+    }
+  },
+  "AU": {
+    "adm0_a3": "AUS",
+    "default": "AU-SOUTHEAST",
+    "overrides": {
+      "AU-QUEENSLAND": {"names": ["Queensland"]},
+      "AU-WEST": {"names": ["Western Australia"]},
+      "AU-CENTRE": {"names": ["Northern Territory"]}
+    }
+  },
+  "VN": {
+    "adm0_a3": "VNM",
+    "default": "VN-SOUTH",
+    "overrides": {
+      "VN-HIGHLANDS": {"names": ["Lâm Đồng", "Đắk Lắk", "Đắk Nông", "Gia Lai", "Kon Tum"]},
+      "VN-NORTH": {"lat_min": 18.5},
+      "VN-CENTRAL": {"lat_min": 12.0, "lat_max": 18.5}
+    }
+  },
+  "GR": {
+    "adm0_a3": "GRC",
+    "default": "GR-MAINLAND",
+    "overrides": {
+      "GR-ISLANDS": {"names": ["Kriti", "Notio Aigaio", "Voreio Aigaio"]}
+    }
+  },
+  "TH": {
+    "adm0_a3": "THA",
+    "default": "TH-CENTRAL",
+    "overrides": {
+      "TH-NORTH": {"lat_min": 15.0},
+      "TH-SOUTH": {"lat_max": 10.0}
+    }
+  },
+  "IN": {
+    "adm0_a3": "IND",
+    "default": "IN-SOUTH",
+    "overrides": {
+      "IN-HIMALAYA": {"lat_min": 30.0, "lon_max": 80.0},
+      "IN-EAST": {"lon_min": 85.0},
+      "IN-NORTH": {"lat_min": 22.0}
+    }
+  },
+  "US": {
+    "adm0_a3": "USA",
+    "default": "US-SOUTHEAST",
+    "overrides": {
+      "US-ALASKA": {"names": ["Alaska"]},
+      "US-HAWAII": {"names": ["Hawaii"]},
+      "US-NORTHEAST": {"names": ["New York", "Massachusetts", "Connecticut", "Rhode Island", "New Jersey", "Pennsylvania", "Maryland", "Delaware", "Vermont", "New Hampshire", "Maine", "Virginia", "West Virginia", "District of Columbia"]},
+      "US-MIDWEST": {"names": ["Illinois", "Indiana", "Iowa", "Kansas", "Michigan", "Minnesota", "Missouri", "Montana", "Nebraska", "North Dakota", "Ohio", "South Dakota", "Wisconsin", "Wyoming", "Idaho"]},
+      "US-WEST": {"names": ["California", "Oregon", "Washington"]},
+      "US-SOUTHWEST": {"names": ["Arizona", "New Mexico", "Utah", "Colorado", "Nevada"]}
+    }
+  },
+  "CA": {
+    "adm0_a3": "CAN",
+    "default": "CA-EAST",
+    "overrides": {
+      "CA-NORTH": {"names": ["Yukon", "Northwest Territories", "Nunavut"]},
+      "CA-WEST": {"names": ["British Columbia"]},
+      "CA-ROCKIES": {"names": ["Alberta"]}
+    }
+  },
+  "BR": {
+    "adm0_a3": "BRA",
+    "default": "BR-SOUTHEAST",
+    "overrides": {
+      "BR-AMAZON": {"names": ["Amazonas", "Pará", "Roraima", "Amapá", "Acre", "Rondônia"]},
+      "BR-NORTHEAST": {"names": ["Bahia", "Sergipe", "Alagoas", "Pernambuco", "Paraíba", "Rio Grande do Norte", "Ceará", "Piauí", "Maranhão"]},
+      "BR-PANTANAL": {"names": ["Mato Grosso do Sul", "Mato Grosso", "Goiás", "Tocantins", "Distrito Federal", "Paraná", "Santa Catarina", "Rio Grande do Sul"]}
+    }
+  },
+  "CN": {
+    "adm0_a3": "CHN",
+    "default": "CN-NORTH",
+    "overrides": {
+      "CN-HAINAN": {"names": ["Hainan"]},
+      "CN-SOUTHWEST": {"names": ["Yunnan", "Sichuan", "Guizhou", "Chongqing", "Xizang", "Guangxi"]},
+      "CN-SOUTH": {"names": ["Guangdong", "Fujian", "Zhejiang", "Jiangxi", "Hunan", "Hubei", "Shanghai", "Jiangsu", "Anhui"]}
+    }
+  },
+  "ZA": {
+    "adm0_a3": "ZAF",
+    "default": "ZA-MAINLAND",
+    "overrides": {
+      "ZA-CAPE": {"names": ["Western Cape"]}
+    }
+  },
+  "TR": {
+    "adm0_a3": "TUR",
+    "default": "TR-INTERIOR",
+    "overrides": {
+      "TR-COAST": {"names": ["Antalya", "Mersin", "Mugla", "Hatay", "Adana"]},
+      "TR-ISTANBUL": {"lon_max": 30.5}
+    }
+  },
+  "ID": {
+    "adm0_a3": "IDN",
+    "default": "ID-WEST",
+    "overrides": {
+      "ID-BALI": {"names": ["Bali", "Nusa Tenggara Barat"]},
+      "ID-EAST": {"names": ["Nusa Tenggara Timur", "Sulawesi Selatan", "Sulawesi Tengah", "Sulawesi Tenggara", "Sulawesi Utara", "Sulawesi Barat", "Gorontalo", "Maluku", "Maluku Utara", "Papua", "Papua Barat"]}
+    }
+  },
+  "NZ": {
+    "adm0_a3": "NZL",
+    "default": "NZ-NORTH",
+    "exclude": {"names": ["Tokelau"]},
+    "overrides": {
+      "NZ-SOUTH": {"lat_max": -41.0}
+    }
+  },
+  "MX": {
+    "adm0_a3": "MEX",
+    "default": "MX-CENTRAL",
+    "overrides": {
+      "MX-YUCATAN": {"names": ["Quintana Roo", "Yucatán", "Campeche", "Tabasco", "Chiapas"]},
+      "MX-PACIFIC": {"names": ["Baja California", "Baja California Sur", "Sinaloa", "Nayarit", "Jalisco", "Colima", "Guerrero", "Sonora"]}
+    }
+  },
+  "ES": {
+    "adm0_a3": "ESP",
+    "default": "ES-MAINLAND",
+    "overrides": {
+      "ES-CANARIES": {"names": ["Santa Cruz de Tenerife", "Las Palmas"]}
+    }
+  },
+  "IT": {
+    "adm0_a3": "ITA",
+    "default": "IT-CENTRAL",
+    "overrides": {
+      "IT-NORTH": {"lat_min": 44.0},
+      "IT-SOUTH": {"lat_max": 41.5}
+    }
+  },
+  "PE": {
+    "adm0_a3": "PER",
+    "default": "PE-COAST",
+    "overrides": {
+      "PE-AMAZON": {"names": ["Loreto", "Ucayali", "Madre de Dios", "San Martín", "Amazonas"]},
+      "PE-HIGHLANDS": {"names": ["Cusco", "Puno", "Arequipa", "Ayacucho", "Apurímac", "Huancavelica", "Junín", "Huánuco", "Pasco", "Áncash", "Cajamarca"]}
+    }
+  },
+  "CO": {
+    "adm0_a3": "COL",
+    "default": "CO-BOGOTA",
+    "overrides": {
+      "CO-CARIBBEAN": {"names": ["La Guajira", "Cesar", "Magdalena", "Atlántico", "Bolívar", "Sucre", "Córdoba", "San Andrés y Providencia"]},
+      "CO-AMAZON": {"names": ["Amazonas", "Vaupés", "Guainía", "Guaviare", "Vichada", "Meta", "Casanare", "Arauca", "Caquetá", "Putumayo"]}
+    }
+  },
+  "RU": {
+    "adm0_a3": "RUS",
+    "default": "RU-WEST",
+    "exclude": {"names": ["Crimea", "Sevastopol"], "transfer_to": "UA"},
+    "overrides": {
+      "RU-EAST": {"names": ["Chukchi Autonomous Okrug"], "lon_min": 125.0},
+      "RU-SIBERIA": {"lon_min": 75.0},
+      "RU-NORTH": {"names": ["Murmansk", "Arkhangel'sk", "Nenets", "Yamalo-Nenets", "Komi"]}
+    }
+  }
+}

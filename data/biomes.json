@@ -1,0 +1,642 @@
+{
+  "NO-SOUTH": {
+    "country": "NO",
+    "name": "Southern Norway",
+    "lat": 60.4,
+    "lon": 5.3,
+    "aurora_zone": false,
+    "description": "Bergen, Oslo, fjords — temperate, accessible year-round"
+  },
+  "NO-LAPLAND": {
+    "country": "NO",
+    "name": "Northern Norway",
+    "lat": 69.6,
+    "lon": 18.9,
+    "aurora_zone": true,
+    "description": "Tromsø, Lofoten, Svalbard — aurora, midnight sun, polar night"
+  },
+  "SE-SOUTH": {
+    "country": "SE",
+    "name": "Southern Sweden",
+    "lat": 59.3,
+    "lon": 18.1,
+    "aurora_zone": false,
+    "description": "Stockholm, Gothenburg, Malmö — temperate Scandinavian lowlands"
+  },
+  "SE-LAPLAND": {
+    "country": "SE",
+    "name": "Swedish Lapland",
+    "lat": 67.8,
+    "lon": 20.2,
+    "aurora_zone": true,
+    "description": "Kiruna, Abisko, Jokkmokk — aurora, reindeer, midnight sun"
+  },
+  "FI-SOUTH": {
+    "country": "FI",
+    "name": "Southern Finland",
+    "lat": 60.2,
+    "lon": 24.9,
+    "aurora_zone": false,
+    "description": "Helsinki, Tampere, Turku — coastal lowlands, lakes, saunas"
+  },
+  "FI-LAPLAND": {
+    "country": "FI",
+    "name": "Finnish Lapland",
+    "lat": 66.5,
+    "lon": 25.7,
+    "aurora_zone": true,
+    "description": "Rovaniemi, Saariselkä, Inari — Santa Claus village, aurora, fell terrain"
+  },
+  "CL-NORTH": {
+    "country": "CL",
+    "name": "Atacama",
+    "lat": -22.9,
+    "lon": -68.2,
+    "aurora_zone": false,
+    "description": "San Pedro de Atacama — driest desert on Earth, stargazing, salt flats"
+  },
+  "CL-CENTRAL": {
+    "country": "CL",
+    "name": "Central Chile",
+    "lat": -33.4,
+    "lon": -70.6,
+    "aurora_zone": false,
+    "description": "Santiago, Valparaíso, wine country — Mediterranean climate, Andes backdrop"
+  },
+  "CL-SOUTH": {
+    "country": "CL",
+    "name": "Patagonia",
+    "lat": -51.7,
+    "lon": -72.5,
+    "aurora_zone": false,
+    "description": "Torres del Paine, Puerto Natales, Puerto Montt — glaciers, end of the world"
+  },
+  "AR-PAMPAS": {
+    "country": "AR",
+    "name": "Buenos Aires & Pampas",
+    "lat": -34.6,
+    "lon": -58.4,
+    "aurora_zone": false,
+    "description": "Buenos Aires, La Plata, Pampas estancias — tango, culture, gaucho country"
+  },
+  "AR-NORTH": {
+    "country": "AR",
+    "name": "Northern Argentina",
+    "lat": -24.0,
+    "lon": -65.2,
+    "aurora_zone": false,
+    "description": "Salta, Jujuy, Iguazú — colourful mountains, subtropical jungle, world-famous waterfalls"
+  },
+  "AR-CUYO": {
+    "country": "AR",
+    "name": "Cuyo & Lakes",
+    "lat": -32.9,
+    "lon": -68.8,
+    "aurora_zone": false,
+    "description": "Mendoza wine, Bariloche, Andean lakes — high desert, ski, wine tasting"
+  },
+  "AR-PATAGONIA": {
+    "country": "AR",
+    "name": "Patagonia",
+    "lat": -50.3,
+    "lon": -72.3,
+    "aurora_zone": false,
+    "description": "El Calafate, Ushuaia, Tierra del Fuego — glaciers, penguins, end of the world"
+  },
+  "JP-HOKKAIDO": {
+    "country": "JP",
+    "name": "Hokkaido",
+    "lat": 43.1,
+    "lon": 141.3,
+    "aurora_zone": false,
+    "description": "Sapporo, Furano, Niseko — powder skiing, lavender fields, cool summers"
+  },
+  "JP-HONSHU": {
+    "country": "JP",
+    "name": "Honshu",
+    "lat": 35.7,
+    "lon": 139.7,
+    "aurora_zone": false,
+    "description": "Tokyo, Kyoto, Osaka — main cultural corridor, cherry blossoms, temples"
+  },
+  "JP-OKINAWA": {
+    "country": "JP",
+    "name": "Okinawa",
+    "lat": 26.3,
+    "lon": 127.8,
+    "aurora_zone": false,
+    "description": "Naha, Ishigaki — subtropical, coral reefs, beaches, distinct Ryukyuan culture"
+  },
+  "AU-SOUTHEAST": {
+    "country": "AU",
+    "name": "Southeast Australia",
+    "lat": -33.9,
+    "lon": 151.2,
+    "aurora_zone": false,
+    "description": "Sydney, Melbourne, Blue Mountains — temperate, most visited, harbour and culture"
+  },
+  "AU-QUEENSLAND": {
+    "country": "AU",
+    "name": "Queensland",
+    "lat": -19.3,
+    "lon": 146.8,
+    "aurora_zone": false,
+    "description": "Cairns, Great Barrier Reef, Gold Coast — tropical, reef diving, theme parks"
+  },
+  "AU-CENTRE": {
+    "country": "AU",
+    "name": "Red Centre",
+    "lat": -23.7,
+    "lon": 133.9,
+    "aurora_zone": false,
+    "description": "Uluru, Alice Springs, MacDonnell Ranges — desert icon, Aboriginal culture"
+  },
+  "AU-WEST": {
+    "country": "AU",
+    "name": "Western Australia",
+    "lat": -31.9,
+    "lon": 115.9,
+    "aurora_zone": false,
+    "description": "Perth, Margaret River, Ningaloo — Mediterranean coast, wildflowers, whale sharks"
+  },
+  "VN-NORTH": {
+    "country": "VN",
+    "name": "Northern Vietnam",
+    "lat": 21.0,
+    "lon": 105.8,
+    "aurora_zone": false,
+    "description": "Hanoi, Ha Long Bay, Sapa — cool winters, limestone karsts, hill tribe trekking"
+  },
+  "VN-CENTRAL": {
+    "country": "VN",
+    "name": "Central Vietnam",
+    "lat": 16.0,
+    "lon": 108.2,
+    "aurora_zone": false,
+    "description": "Da Nang, Hoi An, Hue — opposite monsoon timing, heritage towns, beaches"
+  },
+  "VN-HIGHLANDS": {
+    "country": "VN",
+    "name": "Central Highlands",
+    "lat": 11.9,
+    "lon": 108.4,
+    "aurora_zone": false,
+    "description": "Da Lat — 1500m altitude, cool year-round, waterfalls, coffee plantations"
+  },
+  "VN-SOUTH": {
+    "country": "VN",
+    "name": "Southern Vietnam",
+    "lat": 10.8,
+    "lon": 106.7,
+    "aurora_zone": false,
+    "description": "Ho Chi Minh City, Mekong Delta, Phu Quoc — tropical year-round, river life"
+  },
+  "GR-MAINLAND": {
+    "country": "GR",
+    "name": "Mainland Greece",
+    "lat": 39.1,
+    "lon": 23.7,
+    "aurora_zone": false,
+    "description": "Athens, Thessaloniki, Delphi, Meteora — ancient history, continental climate"
+  },
+  "GR-ISLANDS": {
+    "country": "GR",
+    "name": "Greek Islands",
+    "lat": 37.1,
+    "lon": 25.4,
+    "aurora_zone": false,
+    "description": "Santorini, Mykonos, Crete, Rhodes — iconic white-and-blue islands, beaches, longer warm season"
+  },
+  "TH-NORTH": {
+    "country": "TH",
+    "name": "Northern Thailand",
+    "lat": 18.8,
+    "lon": 98.9,
+    "aurora_zone": false,
+    "description": "Chiang Mai, Chiang Rai, Golden Triangle — mountains, temples, cool season trekking"
+  },
+  "TH-CENTRAL": {
+    "country": "TH",
+    "name": "Central Thailand",
+    "lat": 13.8,
+    "lon": 100.5,
+    "aurora_zone": false,
+    "description": "Bangkok, Ayutthaya — urban hub, heat year-round, history and street food"
+  },
+  "TH-SOUTH": {
+    "country": "TH",
+    "name": "Southern Thailand",
+    "lat": 7.9,
+    "lon": 98.3,
+    "aurora_zone": false,
+    "description": "Phuket, Koh Samui, Krabi — beaches, islands, opposite monsoon season to north"
+  },
+  "IN-NORTH": {
+    "country": "IN",
+    "name": "Northern Plains",
+    "lat": 27.2,
+    "lon": 78.0,
+    "aurora_zone": false,
+    "description": "Delhi, Agra, Rajasthan — Taj Mahal, palaces, extreme heat and cold, Golden Triangle"
+  },
+  "IN-SOUTH": {
+    "country": "IN",
+    "name": "South India",
+    "lat": 10.5,
+    "lon": 76.2,
+    "aurora_zone": false,
+    "description": "Kerala, Goa, Tamil Nadu — backwaters, tropical, earlier monsoon, distinct cuisine"
+  },
+  "IN-HIMALAYA": {
+    "country": "IN",
+    "name": "Himalayan Region",
+    "lat": 32.2,
+    "lon": 77.2,
+    "aurora_zone": false,
+    "description": "Himachal Pradesh, Ladakh, Uttarakhand — trekking, monasteries, Manali, mountain scenery"
+  },
+  "IN-EAST": {
+    "country": "IN",
+    "name": "Eastern India",
+    "lat": 22.6,
+    "lon": 88.4,
+    "aurora_zone": false,
+    "description": "Kolkata, Darjeeling, Sikkim — Bengal culture, tea gardens, gateway to Northeast"
+  },
+  "US-NORTHEAST": {
+    "country": "US",
+    "name": "Northeast",
+    "lat": 40.7,
+    "lon": -74.0,
+    "aurora_zone": false,
+    "description": "NYC, Boston, Washington DC — four seasons, fall foliage, cultural powerhouse"
+  },
+  "US-SOUTHEAST": {
+    "country": "US",
+    "name": "Southeast",
+    "lat": 30.3,
+    "lon": -81.7,
+    "aurora_zone": false,
+    "description": "Florida, Carolinas, New Orleans, Gulf Coast — subtropical, beaches, Mardi Gras, year-round warmth"
+  },
+  "US-MIDWEST": {
+    "country": "US",
+    "name": "Midwest",
+    "lat": 41.9,
+    "lon": -87.6,
+    "aurora_zone": false,
+    "description": "Chicago, Great Lakes, Minneapolis, St. Louis — cold continental winters, heartland, fall colour"
+  },
+  "US-WEST": {
+    "country": "US",
+    "name": "West Coast",
+    "lat": 37.8,
+    "lon": -122.4,
+    "aurora_zone": false,
+    "description": "San Francisco, LA, Seattle — Pacific temperate, national parks, tech culture"
+  },
+  "US-SOUTHWEST": {
+    "country": "US",
+    "name": "Southwest",
+    "lat": 36.1,
+    "lon": -111.8,
+    "aurora_zone": false,
+    "description": "Grand Canyon, Monument Valley, Sedona, New Mexico — desert landscapes, red rock, Route 66"
+  },
+  "US-HAWAII": {
+    "country": "US",
+    "name": "Hawaii",
+    "lat": 21.3,
+    "lon": -157.8,
+    "aurora_zone": false,
+    "description": "Honolulu, Maui, Big Island — tropical, volcanoes, surf, entirely distinct from mainland"
+  },
+  "US-ALASKA": {
+    "country": "US",
+    "name": "Alaska",
+    "lat": 61.2,
+    "lon": -149.9,
+    "aurora_zone": true,
+    "description": "Anchorage, Denali, Fairbanks — subarctic, aurora, bears, midnight sun, vast wilderness"
+  },
+  "CA-EAST": {
+    "country": "CA",
+    "name": "Eastern Canada",
+    "lat": 45.5,
+    "lon": -73.6,
+    "aurora_zone": false,
+    "description": "Toronto, Montreal, Quebec City — Great Lakes, St Lawrence, winter festivals, fall colour"
+  },
+  "CA-WEST": {
+    "country": "CA",
+    "name": "British Columbia",
+    "lat": 49.3,
+    "lon": -123.1,
+    "aurora_zone": false,
+    "description": "Vancouver, Whistler, Victoria — Pacific mild, mountains, skiing, rainforest"
+  },
+  "CA-ROCKIES": {
+    "country": "CA",
+    "name": "Canadian Rockies",
+    "lat": 51.5,
+    "lon": -116.1,
+    "aurora_zone": false,
+    "description": "Banff, Jasper, Lake Louise — iconic mountain parks, turquoise lakes, wildlife"
+  },
+  "CA-NORTH": {
+    "country": "CA",
+    "name": "Northern Canada",
+    "lat": 60.7,
+    "lon": -135.1,
+    "aurora_zone": true,
+    "description": "Yukon, NWT, Whitehorse, Yellowknife — aurora capital, Indigenous culture, true wilderness"
+  },
+  "BR-SOUTHEAST": {
+    "country": "BR",
+    "name": "Southeast Brazil",
+    "lat": -22.9,
+    "lon": -43.2,
+    "aurora_zone": false,
+    "description": "Rio de Janeiro, São Paulo, Paraty — Carnival, Christ the Redeemer, cultural heartland"
+  },
+  "BR-NORTHEAST": {
+    "country": "BR",
+    "name": "Northeast Brazil",
+    "lat": -8.1,
+    "lon": -34.9,
+    "aurora_zone": false,
+    "description": "Recife, Salvador, Fortaleza, Lençóis Maranhenses — beaches, Afro-Brazilian culture"
+  },
+  "BR-AMAZON": {
+    "country": "BR",
+    "name": "Amazon",
+    "lat": -3.1,
+    "lon": -60.0,
+    "aurora_zone": false,
+    "description": "Manaus, Belém, Santarém — world's largest rainforest, river dolphins, Meeting of Waters"
+  },
+  "BR-PANTANAL": {
+    "country": "BR",
+    "name": "Pantanal & South",
+    "lat": -16.4,
+    "lon": -56.1,
+    "aurora_zone": false,
+    "description": "Pantanal wetlands, Campo Grande, Bonito — world's best jaguar spotting, capybara, macaws"
+  },
+  "CN-NORTH": {
+    "country": "CN",
+    "name": "Northern China",
+    "lat": 39.9,
+    "lon": 116.4,
+    "aurora_zone": false,
+    "description": "Beijing, Xi'an, Great Wall — cold winters, imperial history, Silk Road gateway"
+  },
+  "CN-SOUTH": {
+    "country": "CN",
+    "name": "Southern China",
+    "lat": 23.1,
+    "lon": 113.3,
+    "aurora_zone": false,
+    "description": "Guangzhou, Guilin, Hong Kong — subtropical, karst landscapes, Cantonese food"
+  },
+  "CN-SOUTHWEST": {
+    "country": "CN",
+    "name": "Southwest China",
+    "lat": 25.0,
+    "lon": 102.7,
+    "aurora_zone": false,
+    "description": "Yunnan, Chengdu, Sichuan — pandas, ethnic diversity, Tiger Leaping Gorge, spicy food"
+  },
+  "CN-HAINAN": {
+    "country": "CN",
+    "name": "Hainan",
+    "lat": 18.2,
+    "lon": 109.5,
+    "aurora_zone": false,
+    "description": "Sanya, Haikou — tropical island, Chinese Riviera, beach resorts, duty-free shopping"
+  },
+  "ZA-CAPE": {
+    "country": "ZA",
+    "name": "Western Cape",
+    "lat": -33.9,
+    "lon": 18.4,
+    "aurora_zone": false,
+    "description": "Cape Town, Garden Route, Winelands — Mediterranean seasons, Table Mountain, scenic drives"
+  },
+  "ZA-MAINLAND": {
+    "country": "ZA",
+    "name": "Mainland South Africa",
+    "lat": -25.7,
+    "lon": 28.2,
+    "aurora_zone": false,
+    "description": "Johannesburg, Pretoria, Kruger National Park — highveld plateau, Big Five safari, dry season best"
+  },
+  "TR-ISTANBUL": {
+    "country": "TR",
+    "name": "Istanbul & Aegean",
+    "lat": 39.5,
+    "lon": 28.0,
+    "aurora_zone": false,
+    "description": "Istanbul, Izmir, Ephesus, Pamukkale — history at Europe-Asia crossroads, mild maritime"
+  },
+  "TR-COAST": {
+    "country": "TR",
+    "name": "Mediterranean Coast",
+    "lat": 36.9,
+    "lon": 30.7,
+    "aurora_zone": false,
+    "description": "Antalya, Bodrum, Fethiye, Kaş — beach resorts, turquoise coast, warm 8 months"
+  },
+  "TR-INTERIOR": {
+    "country": "TR",
+    "name": "Interior & Cappadocia",
+    "lat": 38.6,
+    "lon": 34.8,
+    "aurora_zone": false,
+    "description": "Ankara, Cappadocia, Konya, Pamukkale — hot-air balloons, fairy chimneys, continental extremes"
+  },
+  "ID-WEST": {
+    "country": "ID",
+    "name": "Western Indonesia",
+    "lat": -7.3,
+    "lon": 110.4,
+    "aurora_zone": false,
+    "description": "Jakarta, Yogyakarta, Sumatra, Kalimantan — temples, volcanoes, orangutans, Lake Toba"
+  },
+  "ID-BALI": {
+    "country": "ID",
+    "name": "Bali & Lombok",
+    "lat": -8.4,
+    "lon": 115.2,
+    "aurora_zone": false,
+    "description": "Ubud, Seminyak, Gili Islands — temple culture, rice terraces, surf, spiritual tourism"
+  },
+  "ID-EAST": {
+    "country": "ID",
+    "name": "Eastern Indonesia",
+    "lat": -8.5,
+    "lon": 119.5,
+    "aurora_zone": false,
+    "description": "Komodo, Flores, Sulawesi, Raja Ampat — diving, dragons, off-the-beaten-path adventure"
+  },
+  "NZ-NORTH": {
+    "country": "NZ",
+    "name": "North Island",
+    "lat": -37.0,
+    "lon": 175.5,
+    "aurora_zone": false,
+    "description": "Auckland, Rotorua, Wellington, Bay of Islands — geothermal, Maori culture, wine"
+  },
+  "NZ-SOUTH": {
+    "country": "NZ",
+    "name": "South Island",
+    "lat": -44.0,
+    "lon": 170.5,
+    "aurora_zone": false,
+    "description": "Queenstown, Fiordland, Christchurch, Mount Cook — alpine, fjords, adventure sports"
+  },
+  "MX-CENTRAL": {
+    "country": "MX",
+    "name": "Central Highlands",
+    "lat": 19.4,
+    "lon": -99.1,
+    "aurora_zone": false,
+    "description": "Mexico City, Oaxaca, Puebla, San Cristóbal — 2000m+ altitude, temperate, colonial history"
+  },
+  "MX-YUCATAN": {
+    "country": "MX",
+    "name": "Yucatan & Caribbean",
+    "lat": 20.6,
+    "lon": -87.1,
+    "aurora_zone": false,
+    "description": "Cancún, Tulum, Mérida, Chichen Itza — Mayan ruins, Caribbean beaches, cenotes"
+  },
+  "MX-PACIFIC": {
+    "country": "MX",
+    "name": "Pacific Coast",
+    "lat": 20.7,
+    "lon": -105.2,
+    "aurora_zone": false,
+    "description": "Puerto Vallarta, Los Cabos, Mazatlán — Pacific surf, whale watching, beach resorts"
+  },
+  "ES-MAINLAND": {
+    "country": "ES",
+    "name": "Mainland Spain",
+    "lat": 40.4,
+    "lon": -3.7,
+    "aurora_zone": false,
+    "description": "Madrid, Barcelona, Seville, Basque Country — Mediterranean and continental, art, tapas, flamenco"
+  },
+  "ES-CANARIES": {
+    "country": "ES",
+    "name": "Canary Islands",
+    "lat": 28.1,
+    "lon": -15.4,
+    "aurora_zone": false,
+    "description": "Tenerife, Gran Canaria, Lanzarote, Fuerteventura — subtropical year-round, volcanic, winter sun"
+  },
+  "IT-NORTH": {
+    "country": "IT",
+    "name": "Northern Italy",
+    "lat": 45.5,
+    "lon": 10.5,
+    "aurora_zone": false,
+    "description": "Milan, Venice, Dolomites, Lake Como — alpine, design, fashion, Po Valley fog"
+  },
+  "IT-CENTRAL": {
+    "country": "IT",
+    "name": "Central Italy",
+    "lat": 43.8,
+    "lon": 11.2,
+    "aurora_zone": false,
+    "description": "Florence, Rome, Tuscany, Umbria — classic Mediterranean, art, rolling hills, Vatican"
+  },
+  "IT-SOUTH": {
+    "country": "IT",
+    "name": "Southern Italy & Sicily",
+    "lat": 37.6,
+    "lon": 14.0,
+    "aurora_zone": false,
+    "description": "Naples, Amalfi Coast, Palermo, Etna — hotter and drier, Greek temples, baroque towns"
+  },
+  "PE-COAST": {
+    "country": "PE",
+    "name": "Coastal Desert",
+    "lat": -12.1,
+    "lon": -77.0,
+    "aurora_zone": false,
+    "description": "Lima, Paracas, Nazca Lines — coastal grey desert, ceviche capital, gateway to everywhere"
+  },
+  "PE-HIGHLANDS": {
+    "country": "PE",
+    "name": "Andes Highlands",
+    "lat": -13.5,
+    "lon": -71.9,
+    "aurora_zone": false,
+    "description": "Cusco, Machu Picchu, Puno, Lake Titicaca — 3400m+, Inca heartland, distinct wet/dry seasons"
+  },
+  "PE-AMAZON": {
+    "country": "PE",
+    "name": "Amazon Basin",
+    "lat": -3.7,
+    "lon": -73.3,
+    "aurora_zone": false,
+    "description": "Iquitos, Puerto Maldonado — equatorial jungle, river lodges, wildlife watching"
+  },
+  "CO-BOGOTA": {
+    "country": "CO",
+    "name": "Andean Highlands",
+    "lat": 4.7,
+    "lon": -74.1,
+    "aurora_zone": false,
+    "description": "Bogotá, Medellín, Salento — eternal spring at altitude, coffee country, Guatapé"
+  },
+  "CO-CARIBBEAN": {
+    "country": "CO",
+    "name": "Caribbean Coast",
+    "lat": 10.4,
+    "lon": -75.5,
+    "aurora_zone": false,
+    "description": "Cartagena, Santa Marta, Tayrona — walled city, colonial history, beaches, heat"
+  },
+  "CO-AMAZON": {
+    "country": "CO",
+    "name": "Amazon & Llanos",
+    "lat": -1.0,
+    "lon": -73.0,
+    "aurora_zone": false,
+    "description": "Leticia, Los Llanos — equatorial Amazon basin, wildlife, off the beaten path"
+  },
+  "RU-WEST": {
+    "country": "RU",
+    "name": "Western Russia",
+    "lat": 59.9,
+    "lon": 30.3,
+    "aurora_zone": false,
+    "description": "Moscow, St. Petersburg — imperial palaces, museums, White Nights, main tourist corridor"
+  },
+  "RU-SIBERIA": {
+    "country": "RU",
+    "name": "Siberia",
+    "lat": 51.9,
+    "lon": 104.9,
+    "aurora_zone": false,
+    "description": "Irkutsk, Lake Baikal, Novosibirsk — Trans-Siberian, world's deepest lake, taiga vastness"
+  },
+  "RU-NORTH": {
+    "country": "RU",
+    "name": "Russian Arctic",
+    "lat": 68.9,
+    "lon": 33.1,
+    "aurora_zone": true,
+    "description": "Murmansk, Kola Peninsula — aurora capital of Russia, polar night, icebreakers"
+  },
+  "RU-EAST": {
+    "country": "RU",
+    "name": "Russian Far East",
+    "lat": 43.1,
+    "lon": 131.9,
+    "aurora_zone": false,
+    "description": "Vladivostok, Kamchatka, Sakhalin — Pacific volcanoes, geysers, end of Trans-Siberian"
+  }
+}
