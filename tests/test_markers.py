@@ -3,25 +3,29 @@
 from __future__ import annotations
 
 import json
-from pathlib import Path
+from typing import TYPE_CHECKING
 from unittest.mock import patch
 
-import pytest
+if TYPE_CHECKING:
+    from pathlib import Path
+
 import geopandas as gpd
 from shapely.geometry import Point, box, mapping
 
-from src.markers import AREA_THRESHOLD_KM2, build_markers_collection, inject_points, _quantize
+from src.markers import AREA_THRESHOLD_KM2, _quantize, build_markers_collection, inject_points
 
 
 def _make_gdf(geoms: list, crs: str = "EPSG:4326") -> gpd.GeoDataFrame:
     rows = []
-    for i, geom in enumerate(geoms):
-        rows.append({
-            "iso_a2": f"T{i}",
-            "name": f"Test{i}",
-            "sovereign": "Testland",
-            "type": "country",
-        })
+    for i, _geom in enumerate(geoms):
+        rows.append(
+            {
+                "iso_a2": f"T{i}",
+                "name": f"Test{i}",
+                "sovereign": "Testland",
+                "type": "country",
+            }
+        )
     return gpd.GeoDataFrame(rows, geometry=geoms, crs=crs)
 
 
@@ -106,7 +110,8 @@ def test_quantize_origin() -> None:
 def test_main_runs(tmp_path: Path) -> None:
     """markers main() runs end-to-end with mocked mapshaper."""
     import json
-    from shapely.geometry import box, mapping
+
+    from shapely.geometry import box
 
     # Write a minimal merged.geojson
     large = box(-10, -10, 10, 10)
@@ -122,7 +127,12 @@ def test_main_runs(tmp_path: Path) -> None:
             {
                 "type": "Feature",
                 "geometry": mapping(tiny),
-                "properties": {"iso_a2": "TT", "name": "Tiny", "sovereign": "T", "type": "territory"},
+                "properties": {
+                    "iso_a2": "TT",
+                    "name": "Tiny",
+                    "sovereign": "T",
+                    "type": "territory",
+                },
             },
         ],
     }
@@ -147,6 +157,7 @@ def test_main_runs(tmp_path: Path) -> None:
         patch("src.markers.run_mapshaper", fake_run_mapshaper),
     ):
         from src.markers import main
+
         main()
 
     assert (tmp_path / "iso-a2-markers.json").exists()
@@ -155,7 +166,8 @@ def test_main_runs(tmp_path: Path) -> None:
 def test_main_includes_points_only(tmp_path: Path) -> None:
     """main() includes features from points-only.geojson in the markers topology."""
     import json
-    from shapely.geometry import box, mapping
+
+    from shapely.geometry import box
 
     large = box(-10, -10, 10, 10)
     collection = {

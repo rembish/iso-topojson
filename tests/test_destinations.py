@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import csv
-import io
 from pathlib import Path
 from unittest.mock import patch
 
@@ -50,20 +49,25 @@ def test_types_are_valid() -> None:
 
 def test_strategies_are_valid() -> None:
     """All strategy values are one of the known strategies."""
-    valid = {"direct", "subunit", "admin1", "group_remainder", "disputed", "island_bbox", "land_bbox", "point"}
+    valid = {
+        "direct",
+        "subunit",
+        "admin1",
+        "group_remainder",
+        "disputed",
+        "island_bbox",
+        "land_bbox",
+        "point",
+    }
     for d in get_destinations():
-        assert d["strategy"] in valid, (
-            f"[{d['iso_a2']}] invalid strategy: {d['strategy']!r}"
-        )
+        assert d["strategy"] in valid, f"[{d['iso_a2']}] invalid strategy: {d['strategy']!r}"
 
 
 def test_iso_n3_is_int_or_none() -> None:
     """iso_n3 is always an int or None, never a string."""
     for d in get_destinations():
         v = d.get("iso_n3")
-        assert v is None or isinstance(v, int), (
-            f"[{d['iso_a2']}] iso_n3 is {type(v)}: {v!r}"
-        )
+        assert v is None or isinstance(v, int), f"[{d['iso_a2']}] iso_n3 is {type(v)}: {v!r}"
 
 
 def test_point_strategy_has_coords() -> None:
@@ -147,9 +151,17 @@ def test_csv_has_correct_header() -> None:
         headers = reader.fieldnames or []
 
     required_cols = {
-        "iso_a2", "name", "type", "sovereign",
-        "strategy", "adm0_a3", "su_a3",
-        "parent_adm0_a3", "bbox", "point_lat", "point_lon",
+        "iso_a2",
+        "name",
+        "type",
+        "sovereign",
+        "strategy",
+        "adm0_a3",
+        "su_a3",
+        "parent_adm0_a3",
+        "bbox",
+        "point_lat",
+        "point_lon",
         "disputed_name",
     }
     missing = required_cols - set(headers)
@@ -222,6 +234,5 @@ def test_malformed_csv_non_numeric_iso_n3(tmp_path: Path) -> None:
         "point_lat,point_lon,subtract_codes,disputed_name,merge_a3,merge_disputed\n"
         "TS,Test,country,Test,TST,not-a-number,direct,TST,,,,,,,,\n"
     )
-    with patch("src.destinations.REGIONS_CSV", bad_csv):
-        with pytest.raises(ValueError):
-            get_destinations()
+    with patch("src.destinations.REGIONS_CSV", bad_csv), pytest.raises(ValueError):
+        get_destinations()

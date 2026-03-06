@@ -69,8 +69,9 @@
 <div id="loading">Loading ISO-A2 TopoJSON...</div>
 <div id="tooltip"></div>
 <div id="toggle">
-  <button class="toggle-btn active" id="btn-full"    onclick="switchFile('output/iso-a2.json',         'btn-full'   )">Full</button>
-  <button class="toggle-btn"        id="btn-markers" onclick="switchFile('output/iso-a2-markers.json', 'btn-markers')">Markers</button>
+  <button class="toggle-btn active" id="btn-full"    onclick="switchFile('output/iso-a2.json',                  'btn-full'   )">Full</button>
+  <button class="toggle-btn"        id="btn-markers" onclick="switchFile('output/iso-a2-markers.json',          'btn-markers')">Markers</button>
+  <button class="toggle-btn"        id="btn-biomes"  onclick="switchFile('output/iso-a2-markers-biomes.json',  'btn-biomes' )">Biomes</button>
 </div>
 <div id="legend"></div>
 <div id="info"></div>
@@ -85,6 +86,23 @@
     "disputed":   "#ef5350",
     "dependency": "#ffa726",
   };
+
+  // One distinct color per biomed country (27 countries)
+  const biomeCountryColors = {};
+  function getBiomeCountryColor(iso) {
+    if (!biomeCountryColors._init) {
+      biomeCountryColors._init = true;
+      biomeCountryColors._i = 0;
+    }
+    if (!biomeCountryColors[iso]) {
+      const hue = (biomeCountryColors._i * 137.5) % 360; // golden angle spread
+      biomeCountryColors[iso] = `hsl(${Math.round(hue)}, 65%, 55%)`;
+      biomeCountryColors._i++;
+    }
+    return biomeCountryColors[iso];
+  }
+
+  let isBiomesView = false;
 
   const width = window.innerWidth;
   const height = window.innerHeight;
@@ -119,12 +137,15 @@
 
   function showTooltip(event, d) {
     const p = d.properties;
+    const isBiome = !!p.biome_id;
     tooltip.style("display", "block").html(`
       <div class="tt-name">${p.name}</div>
+      ${isBiome ? `<div class="tt-row">Biome: <span>${p.biome_id}</span></div>` : ""}
       <div class="tt-row">ISO A2: <span>${p.iso_a2}</span></div>
       ${p.iso_a3 ? `<div class="tt-row">ISO A3: <span>${p.iso_a3}</span></div>` : ""}
       <div class="tt-row">Sovereign: <span>${p.sovereign || "—"}</span></div>
       <div class="tt-row">Type: <span>${p.type}</span></div>
+      ${p.aurora_zone ? `<div class="tt-row">Aurora zone: <span>yes</span></div>` : ""}
       ${p.area_km2 != null ? `<div class="tt-row">Area: <span>${p.area_km2.toLocaleString()} km²</span></div>` : ""}
     `);
     moveTooltip(event);
@@ -150,7 +171,10 @@
     let topology;
     try {
       const resp = await fetch(url);
-      if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+      if (!resp.ok) {
+        const hint = url.includes("biomes") ? " — run: make build-biomes" : "";
+        throw new Error(`HTTP ${resp.status}${hint}`);
+      }
       topology = await resp.json();
     } catch (e) {
       document.getElementById("loading").textContent = `Failed to load: ${e.message}`;
@@ -188,8 +212,14 @@
       .join("path")
       .attr("class", "land")
       .attr("d", path)
-      .attr("fill", d => typeColors[d.properties.type] || "#666")
-      .attr("fill-opacity", 0.7)
+      .attr("fill", d => {
+        if (isBiomesView && d.properties.biome_id) return getBiomeCountryColor(d.properties.iso_a2);
+        return typeColors[d.properties.type] || "#666";
+      })
+      .attr("fill-opacity", d => {
+        if (isBiomesView) return d.properties.biome_id ? 0.75 : 0.7;
+        return 0.7;
+      })
       .on("mouseenter", showTooltip)
       .on("mousemove", moveTooltip)
       .on("mouseleave", hideTooltip);
@@ -209,14 +239,19 @@
         const projected = projection(coords);
         return projected ? projected[1] : null;
       })
-      .attr("fill", d => typeColors[d.properties.type] || "#666")
+      .attr("fill", d => {
+        if (isBiomesView && d.properties.biome_id) return getBiomeCountryColor(d.properties.iso_a2);
+        return typeColors[d.properties.type] || "#666";
+      })
       .attr("fill-opacity", 0.85)
       .on("mouseenter", showTooltip)
       .on("mousemove", moveTooltip)
       .on("mouseleave", hideTooltip);
 
     const legendEl = document.getElementById("legend");
-    let legendHTML = "<h3>Feature Types</h3>";
+    let legendHTML = "";
+
+    legendHTML += "<h3>Feature Types</h3>";
     const typeCounts = {};
     allFeatures.forEach(f => {
       const t = f.properties.type;
@@ -228,6 +263,22 @@
         <div class="legend-swatch" style="background:${color}"></div>
         <span>${type} (${count})</span>
       </div>`;
+    }
+    if (isBiomesView) {
+      const countries = {};
+      allFeatures.forEach(f => {
+        if (f.properties.biome_id) {
+          const cc = f.properties.iso_a2;
+          countries[cc] = (countries[cc] || 0) + 1;
+        }
+      });
+      legendHTML += `<h3 style="margin-top:10px">Biomed (${Object.keys(countries).length} countries)</h3>`;
+      for (const cc of Object.keys(countries).sort()) {
+        legendHTML += `<div class="legend-item">
+          <div class="legend-swatch" style="background:${getBiomeCountryColor(cc)}"></div>
+          <span>${cc} (${countries[cc]} zones)</span>
+        </div>`;
+      }
     }
     legendEl.innerHTML = legendHTML;
 
@@ -244,6 +295,7 @@
     document.getElementById(activeBtn).classList.remove("active");
     document.getElementById(btnId).classList.add("active");
     activeBtn = btnId;
+    isBiomesView = btnId === "btn-biomes";
     await loadAndRender(url);
   };
 

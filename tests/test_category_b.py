@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import pytest
+
 from src.category_b import extract_admin1
 
 
@@ -50,9 +52,7 @@ def test_extract_admin1_multiple_provinces(admin1_gdf) -> None:
     feat = extract_admin1(dest, admin1_gdf)
     assert feat is not None
     from shapely.geometry import shape
+
     geom = shape(feat["geometry"])
     # Combined area = 10x5 + 10x5 = 100
     assert geom.area == pytest.approx(100.0)
-
-
-import pytest

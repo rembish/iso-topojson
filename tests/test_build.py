@@ -3,15 +3,18 @@
 from __future__ import annotations
 
 import json
-from pathlib import Path
+from typing import TYPE_CHECKING
 from unittest.mock import patch
 
-import pytest
+if TYPE_CHECKING:
+    from pathlib import Path
 
 from src.build import build_features, write_geojson
 
 
-def test_build_features_direct(base_dest, subunits_gdf, units_gdf, admin1_gdf, disputed_gdf) -> None:
+def test_build_features_direct(
+    base_dest, subunits_gdf, units_gdf, admin1_gdf, disputed_gdf
+) -> None:
     """build_features builds a direct-strategy destination."""
     with patch("src.build.get_destinations", return_value=[base_dest]):
         built = build_features(subunits_gdf, units_gdf, admin1_gdf, disputed_gdf)
@@ -25,7 +28,6 @@ def test_build_features_group_remainder_ordering(
     subunits_gdf, units_gdf, admin1_gdf, disputed_gdf
 ) -> None:
     """build_features processes group_remainder after direct features."""
-    from shapely.geometry import box, mapping
 
     sub_dest = {
         "iso_a2": "TP",
@@ -57,9 +59,7 @@ def test_build_features_group_remainder_ordering(
     assert "TP" in built
 
 
-def test_build_features_unknown_strategy(
-    subunits_gdf, units_gdf, admin1_gdf, disputed_gdf
-) -> None:
+def test_build_features_unknown_strategy(subunits_gdf, units_gdf, admin1_gdf, disputed_gdf) -> None:
     """build_features skips features with unknown strategy."""
     dest = {
         "iso_a2": "ZZ",
@@ -140,10 +140,13 @@ def test_main_runs(subunits_gdf, units_gdf, admin1_gdf, disputed_gdf, tmp_path: 
     }
     with (
         patch("src.build.get_destinations", return_value=[dest]),
-        patch("src.build.load_data", return_value=(subunits_gdf, units_gdf, admin1_gdf, disputed_gdf)),
+        patch(
+            "src.build.load_data", return_value=(subunits_gdf, units_gdf, admin1_gdf, disputed_gdf)
+        ),
         patch("src.build.OUTPUT_DIR", tmp_path),
     ):
         from src.build import main
+
         main()
 
     assert (tmp_path / "merged.geojson").exists()

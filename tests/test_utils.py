@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import pytest
-from shapely.geometry import MultiPolygon, Point, Polygon, box
+from shapely.geometry import MultiPolygon, Point, box
 
 from src.utils import (
     dissolve_geometries,
@@ -32,7 +32,7 @@ def test_dissolve_overlapping_polygons() -> None:
 
 def test_extract_polygons_by_bbox_centroid_inside() -> None:
     """extract_polygons_by_bbox returns sub-polygon whose centroid is inside bbox."""
-    p1 = box(0, 0, 2, 2)   # centroid (1, 1) inside bbox
+    p1 = box(0, 0, 2, 2)  # centroid (1, 1) inside bbox
     p2 = box(10, 10, 12, 12)  # centroid outside bbox
     geom = MultiPolygon([p1, p2])
     result = extract_polygons_by_bbox(geom, (0.0, 0.0, 5.0, 5.0))

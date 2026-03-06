@@ -81,17 +81,14 @@ def test_generate_point_missing_lon(point_dest) -> None:
 
 def test_extract_land_bbox_found(tmp_path, point_dest) -> None:
     """extract_land_bbox clips ne_10m_land to the given bbox."""
-    import json
-    from pathlib import Path
     from unittest.mock import patch
-    from shapely.geometry import box, mapping
+
     import geopandas as gpd
+    from shapely.geometry import box
 
     # Write a minimal land shapefile in tmp_path
     land_geom = box(3.0, -55.0, 4.0, -54.0)
-    land_gdf = gpd.GeoDataFrame(
-        [{"featurecla": "Land"}], geometry=[land_geom], crs="EPSG:4326"
-    )
+    land_gdf = gpd.GeoDataFrame([{"featurecla": "Land"}], geometry=[land_geom], crs="EPSG:4326")
     land_shp = tmp_path / "ne_10m_land.shp"
     land_gdf.to_file(land_shp)
 
@@ -115,8 +112,14 @@ def test_extract_land_bbox_found(tmp_path, point_dest) -> None:
 
 def test_extract_land_bbox_no_bbox(point_dest) -> None:
     """extract_land_bbox returns None when bbox is missing."""
-    dest = {"iso_a2": "BV", "name": "Bouvet Island", "iso_a3": "BVT",
-            "iso_n3": 74, "sovereign": "Norway", "type": "territory"}
+    dest = {
+        "iso_a2": "BV",
+        "name": "Bouvet Island",
+        "iso_a3": "BVT",
+        "iso_n3": 74,
+        "sovereign": "Norway",
+        "type": "territory",
+    }
     feat = extract_land_bbox(dest)
     assert feat is None
 
@@ -126,8 +129,12 @@ def test_extract_land_bbox_missing_file(tmp_path, point_dest) -> None:
     from unittest.mock import patch
 
     dest = {
-        "iso_a2": "BV", "name": "Bouvet Island", "iso_a3": "BVT",
-        "iso_n3": 74, "sovereign": "Norway", "type": "territory",
+        "iso_a2": "BV",
+        "name": "Bouvet Island",
+        "iso_a3": "BVT",
+        "iso_n3": 74,
+        "sovereign": "Norway",
+        "type": "territory",
         "bbox": (3.2, -54.6, 3.6, -54.2),
     }
     with patch("src.category_c._LAND_SHP", tmp_path / "missing.shp"):

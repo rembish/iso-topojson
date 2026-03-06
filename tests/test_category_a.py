@@ -2,10 +2,8 @@
 
 from __future__ import annotations
 
-import pytest
-from shapely.geometry import box
-
 import geopandas as gpd
+from shapely.geometry import box
 
 from src.category_a import extract_direct, extract_subunit
 
@@ -45,8 +43,13 @@ def test_extract_direct_name_fallback(subunits_gdf, units_gdf) -> None:
 def test_extract_direct_merge_a3(base_dest, subunits_gdf, units_gdf) -> None:
     """extract_direct merges extra geometries from merge_a3 list."""
     extra_gdf = gpd.GeoDataFrame(
-        {"ADM0_A3": ["EXT"], "SU_A3": ["EXT"], "GU_A3": ["EXT"], "ISO_A3": ["EXT"],
-         "NAME": ["Extra"]},
+        {
+            "ADM0_A3": ["EXT"],
+            "SU_A3": ["EXT"],
+            "GU_A3": ["EXT"],
+            "ISO_A3": ["EXT"],
+            "NAME": ["Extra"],
+        },
         geometry=[box(20, 10, 30, 20)],
         crs="EPSG:4326",
     )
@@ -60,6 +63,7 @@ def test_extract_direct_merge_a3(base_dest, subunits_gdf, units_gdf) -> None:
     assert feat is not None
     # Merged area should be larger than the original 10x10 box
     from shapely.geometry import shape
+
     geom = shape(feat["geometry"])
     assert geom.area > 100
 

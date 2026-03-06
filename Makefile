@@ -4,7 +4,7 @@ PYTHON := $(VENV)/bin/python
 PIP := $(VENV)/bin/pip
 SIMPLIFY ?= 3%
 
-.PHONY: all venv download build simplify markers validate dist serve clean format lint typecheck test check help
+.PHONY: all venv download build simplify markers validate dist build-biomes dist-biomes serve clean format lint typecheck test check help
 
 all: venv check download build simplify markers validate dist
 
@@ -36,6 +36,12 @@ validate: venv
 dist: output/iso-a2.json output/iso-a2-markers.json
 	cp output/iso-a2.json iso-a2.json
 	cp output/iso-a2-markers.json iso-a2-markers.json
+
+build-biomes: output/merged.geojson
+	SIMPLIFY=$(SIMPLIFY) $(PYTHON) -m src.build_biomes
+
+dist-biomes: output/iso-a2-markers-biomes.json
+	cp output/iso-a2-markers-biomes.json iso-a2-markers-biomes.json
 
 serve:
 	@echo "Serving viewer at http://localhost:8000/viewer.html"
@@ -72,6 +78,8 @@ help:
 	@echo "    markers      Replace tiny polygons with centroid points → output/iso-a2-markers.json  (SIMPLIFY=3%)"
 	@echo "    validate     Validate merged.geojson and iso-a2.json"
 	@echo "    dist         Copy iso-a2.json and iso-a2-markers.json to project root"
+	@echo "    build-biomes Build biome-subdivided variant → output/iso-a2-markers-biomes.json"
+	@echo "    dist-biomes  Copy iso-a2-markers-biomes.json to project root"
 	@echo ""
 	@echo "  Code quality:"
 	@echo "    format       Auto-format with Black + Ruff (--fix)"

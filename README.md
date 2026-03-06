@@ -15,6 +15,7 @@ npm install @rembish/iso-topojson
 ```
 https://unpkg.com/@rembish/iso-topojson/iso-a2.json
 https://unpkg.com/@rembish/iso-topojson/iso-a2-markers.json
+https://unpkg.com/@rembish/iso-topojson/iso-a2-markers-biomes.json
 ```
 
 ## Files
@@ -23,6 +24,15 @@ https://unpkg.com/@rembish/iso-topojson/iso-a2-markers.json
 |------|------|-------------|
 | `iso-a2.json` | 204 KB | Full-detail TopoJSON, 250 polygon features |
 | `iso-a2-markers.json` | 246 KB | Compact variant: tiny territories (< 500 km²) replaced with Point markers |
+| `iso-a2-markers-biomes.json` | 317 KB | Biomes variant: 25 large countries subdivided into 83 climate/travel zones |
+
+### Biomes variant
+
+`iso-a2-markers-biomes.json` replaces 25 large countries with multiple **biome polygons** — climate and travel zones derived from admin-1 province boundaries. For example, the United States is split into 7 zones (Northeast, Southeast, Midwest, West Coast, Southwest, Hawaii, Alaska) and Russia into 4 (West, North, Siberia, Far East).
+
+Countries with biome subdivisions: AR, AU, BR, CA, CL, CN, CO, ES, FI, GR, ID, IN, IT, JP, MX, NO, NZ, PE, RU, SE, TH, TR, US, VN, ZA.
+
+The remaining 225 countries appear as single polygons, same as in `iso-a2-markers.json`. Tiny territories are Point markers. Total: 308 features (258 polygons + 50 point markers).
 
 In `iso-a2-markers.json` the ~50 smallest territories (Maldives, Malta, Liechtenstein, most Caribbean islands, etc.) appear as `Point` geometries with `"marker": true` in their properties. All features share the same properties schema.
 
@@ -98,8 +108,15 @@ svg.selectAll("circle")
 | `name` | `string` | Common English name |
 | `sovereign` | `string` | Sovereign state name (same as `name` for independent countries) |
 | `type` | `string` | `"country"`, `"territory"`, `"disputed"`, or `"dependency"` |
-| `marker` | `boolean` | `true` if this feature is a Point marker (markers file only) |
-| `area_km2` | `number` | Area in km² (markers file only, for classified features) |
+| `marker` | `boolean` | `true` if this feature is a Point marker (markers files only) |
+| `area_km2` | `number` | Area in km² (markers files only, for classified features) |
+
+### Biome-specific properties (biomes variant only)
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `biome_id` | `string` | Biome identifier, e.g. `"US-ALASKA"`, `"RU-SIBERIA"` |
+| `aurora_zone` | `boolean` | Whether the biome is in the aurora viewing zone |
 
 ## Coverage
 
@@ -114,7 +131,7 @@ All 250 entries (249 ISO 3166-1 alpha-2 + Kosovo `XK` quasi-ISO) are included as
 - Norwegian territories (SJ)
 - Chinese SARs (HK, MO)
 - Disputed / quasi-ISO (EH, PS, TW, XK)
-- And many more…
+- And many more...
 
 All 250 entries appear as polygons in `iso-a2.json`. Bouvet Island (BV, ~55 km²) is extracted from the NE physical land layer since it is absent from the admin layers. In `iso-a2-markers.json`, the ~50 smallest territories are replaced with centroid point markers.
 
@@ -129,13 +146,21 @@ make all
 Full pipeline:
 
 1. **venv** — creates `.venv` and installs Python dependencies
-2. **check** — lint (`ruff`, `black`), type-check (`mypy`), tests (`pytest`, ≥ 80% coverage)
+2. **check** — lint (`ruff`, `black`), type-check (`mypy`), tests (`pytest`, >= 80% coverage)
 3. **download** — fetches Natural Earth 10m shapefiles
-4. **build** — assembles 250 GeoJSON features via direct matches, subunit extractions, admin-1 merges, island bbox extractions, and disputed-area overlays → `output/merged.geojson`
-5. **simplify** — runs `mapshaper` at **3% vertex retention** → `output/iso-a2.json` (203 KB)
-6. **markers** — replaces polygons < 500 km² with centroid point markers → `output/iso-a2-markers.json` (246 KB)
+4. **build** — assembles 250 GeoJSON features via direct matches, subunit extractions, admin-1 merges, island bbox extractions, and disputed-area overlays -> `output/merged.geojson`
+5. **simplify** — runs `mapshaper` at **3% vertex retention** -> `output/iso-a2.json` (204 KB)
+6. **markers** — replaces polygons < 500 km² with centroid point markers -> `output/iso-a2-markers.json` (246 KB)
 7. **validate** — checks all expected codes are present and valid
-8. **dist** — copies both files to the repo root
+8. **dist** — copies output files to the repo root
+
+### Biomes build
+
+```bash
+make build-biomes dist-biomes
+```
+
+Subdivides 25 large countries into climate/travel zones using admin-1 province boundaries and produces `iso-a2-markers-biomes.json` (317 KB, 308 features).
 
 ### Tuning simplification
 
@@ -148,10 +173,10 @@ make simplify SIMPLIFY=1%   # more compression (smaller file)
 
 ```bash
 make serve
-# → http://localhost:8000/viewer.html
+# -> http://localhost:8000/viewer.html
 ```
 
-Renders all features coloured by type (country / territory / disputed / dependency). Toggle between Full and Markers variants. Hover for iso_a2, name, sovereign, type, and area.
+Renders all features coloured by type (country / territory / disputed / dependency). Toggle between Full, Markers, and Biomes variants. Hover for iso_a2, name, sovereign, type, and area.
 
 ## Data Sources
 

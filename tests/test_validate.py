@@ -3,8 +3,11 @@
 from __future__ import annotations
 
 import json
-from pathlib import Path
+from typing import TYPE_CHECKING
 from unittest.mock import patch
+
+if TYPE_CHECKING:
+    from pathlib import Path
 
 import pytest
 
@@ -18,11 +21,15 @@ def _write_geojson(path: Path, features: list) -> None:
 
 
 def _write_topojson(path: Path, geometries: list) -> None:
-    path.write_text(json.dumps({
-        "type": "Topology",
-        "objects": {"regions": {"type": "GeometryCollection", "geometries": geometries}},
-        "arcs": [],
-    }))
+    path.write_text(
+        json.dumps(
+            {
+                "type": "Topology",
+                "objects": {"regions": {"type": "GeometryCollection", "geometries": geometries}},
+                "arcs": [],
+            }
+        )
+    )
 
 
 def _make_feature(code: str, name: str = "Test", geom: dict | None = None) -> dict:
@@ -119,10 +126,9 @@ def test_validate_topojson_wrong_count(tmp_path: Path) -> None:
 
 def test_validate_topojson_large_file_warning(tmp_path: Path, capsys) -> None:
     """validate_topojson warns when file exceeds 400 KB."""
-    # 9 codes × 50000 chars padding ≈ 440 KB → exceeds 400 KB limit
+    # 9 codes x 50000 chars padding ~ 440 KB -> exceeds 400 KB limit
     geoms = [
-        {"type": "Polygon", "arcs": [[i]], "padding": "x" * 50000}
-        for i in range(len(_VALID_CODES))
+        {"type": "Polygon", "arcs": [[i]], "padding": "x" * 50000} for i in range(len(_VALID_CODES))
     ]
     path = tmp_path / "iso-a2.json"
     _write_topojson(path, geoms)
