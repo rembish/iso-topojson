@@ -241,6 +241,7 @@ def build_biome_features(
                 "iso_a3": parent.get("iso_a3"),
                 "iso_n3": parent.get("iso_n3"),
                 "name": biome_info["name"],
+                "short": biome_info.get("short"),
                 "sovereign": parent.get("sovereign"),
                 "type": parent.get("type"),
                 "aurora_zone": biome_info.get("aurora_zone", False),

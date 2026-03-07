@@ -29,9 +29,9 @@ def _make_gdf(geoms: list, crs: str = "EPSG:4326") -> gpd.GeoDataFrame:
     return gpd.GeoDataFrame(rows, geometry=geoms, crs=crs)
 
 
-def test_area_threshold_is_500() -> None:
-    """AREA_THRESHOLD_KM2 is 500 for iso-topojson."""
-    assert AREA_THRESHOLD_KM2 == 500.0
+def test_area_threshold_is_1000() -> None:
+    """AREA_THRESHOLD_KM2 is 1000 for iso-topojson."""
+    assert AREA_THRESHOLD_KM2 == 1000.0
 
 
 def test_build_markers_large_polygon_kept() -> None:

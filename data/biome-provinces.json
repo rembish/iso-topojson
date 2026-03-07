@@ -213,5 +213,12 @@
       "RU-SIBERIA": {"lon_min": 75.0},
       "RU-NORTH": {"names": ["Murmansk", "Arkhangel'sk", "Nenets", "Yamalo-Nenets", "Komi"]}
     }
+  },
+  "PT": {
+    "adm0_a3": "PRT",
+    "default": "PT-MAINLAND",
+    "overrides": {
+      "PT-MADEIRA": {"names": ["Madeira"]}
+    }
   }
 }

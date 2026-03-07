@@ -2,6 +2,7 @@
   "NO-SOUTH": {
     "country": "NO",
     "name": "Southern Norway",
+    "short": "South",
     "lat": 60.4,
     "lon": 5.3,
     "aurora_zone": false,
@@ -10,6 +11,7 @@
   "NO-LAPLAND": {
     "country": "NO",
     "name": "Northern Norway",
+    "short": "Lapland",
     "lat": 69.6,
     "lon": 18.9,
     "aurora_zone": true,
@@ -18,6 +20,7 @@
   "SE-SOUTH": {
     "country": "SE",
     "name": "Southern Sweden",
+    "short": "South",
     "lat": 59.3,
     "lon": 18.1,
     "aurora_zone": false,
@@ -26,6 +29,7 @@
   "SE-LAPLAND": {
     "country": "SE",
     "name": "Swedish Lapland",
+    "short": "Lapland",
     "lat": 67.8,
     "lon": 20.2,
     "aurora_zone": true,
@@ -34,6 +38,7 @@
   "FI-SOUTH": {
     "country": "FI",
     "name": "Southern Finland",
+    "short": "South",
     "lat": 60.2,
     "lon": 24.9,
     "aurora_zone": false,
@@ -42,6 +47,7 @@
   "FI-LAPLAND": {
     "country": "FI",
     "name": "Finnish Lapland",
+    "short": "Lapland",
     "lat": 66.5,
     "lon": 25.7,
     "aurora_zone": true,
@@ -50,6 +56,7 @@
   "CL-NORTH": {
     "country": "CL",
     "name": "Atacama",
+    "short": "Atacama",
     "lat": -22.9,
     "lon": -68.2,
     "aurora_zone": false,
@@ -58,6 +65,7 @@
   "CL-CENTRAL": {
     "country": "CL",
     "name": "Central Chile",
+    "short": "Central",
     "lat": -33.4,
     "lon": -70.6,
     "aurora_zone": false,
@@ -66,6 +74,7 @@
   "CL-SOUTH": {
     "country": "CL",
     "name": "Patagonia",
+    "short": "Patagonia",
     "lat": -51.7,
     "lon": -72.5,
     "aurora_zone": false,
@@ -74,6 +83,7 @@
   "AR-PAMPAS": {
     "country": "AR",
     "name": "Buenos Aires & Pampas",
+    "short": "Pampas",
     "lat": -34.6,
     "lon": -58.4,
     "aurora_zone": false,
@@ -82,6 +92,7 @@
   "AR-NORTH": {
     "country": "AR",
     "name": "Northern Argentina",
+    "short": "North",
     "lat": -24.0,
     "lon": -65.2,
     "aurora_zone": false,
@@ -90,6 +101,7 @@
   "AR-CUYO": {
     "country": "AR",
     "name": "Cuyo & Lakes",
+    "short": "Cuyo",
     "lat": -32.9,
     "lon": -68.8,
     "aurora_zone": false,
@@ -98,6 +110,7 @@
   "AR-PATAGONIA": {
     "country": "AR",
     "name": "Patagonia",
+    "short": "Patagonia",
     "lat": -50.3,
     "lon": -72.3,
     "aurora_zone": false,
@@ -106,6 +119,7 @@
   "JP-HOKKAIDO": {
     "country": "JP",
     "name": "Hokkaido",
+    "short": "Hokkaido",
     "lat": 43.1,
     "lon": 141.3,
     "aurora_zone": false,
@@ -114,6 +128,7 @@
   "JP-HONSHU": {
     "country": "JP",
     "name": "Honshu",
+    "short": "Honshu",
     "lat": 35.7,
     "lon": 139.7,
     "aurora_zone": false,
@@ -122,6 +137,7 @@
   "JP-OKINAWA": {
     "country": "JP",
     "name": "Okinawa",
+    "short": "Okinawa",
     "lat": 26.3,
     "lon": 127.8,
     "aurora_zone": false,
@@ -130,6 +146,7 @@
   "AU-SOUTHEAST": {
     "country": "AU",
     "name": "Southeast Australia",
+    "short": "Southeast",
     "lat": -33.9,
     "lon": 151.2,
     "aurora_zone": false,
@@ -138,6 +155,7 @@
   "AU-QUEENSLAND": {
     "country": "AU",
     "name": "Queensland",
+    "short": "Queensland",
     "lat": -19.3,
     "lon": 146.8,
     "aurora_zone": false,
@@ -146,6 +164,7 @@
   "AU-CENTRE": {
     "country": "AU",
     "name": "Red Centre",
+    "short": "Centre",
     "lat": -23.7,
     "lon": 133.9,
     "aurora_zone": false,
@@ -154,6 +173,7 @@
   "AU-WEST": {
     "country": "AU",
     "name": "Western Australia",
+    "short": "West",
     "lat": -31.9,
     "lon": 115.9,
     "aurora_zone": false,
@@ -162,6 +182,7 @@
   "VN-NORTH": {
     "country": "VN",
     "name": "Northern Vietnam",
+    "short": "North",
     "lat": 21.0,
     "lon": 105.8,
     "aurora_zone": false,
@@ -170,6 +191,7 @@
   "VN-CENTRAL": {
     "country": "VN",
     "name": "Central Vietnam",
+    "short": "Central",
     "lat": 16.0,
     "lon": 108.2,
     "aurora_zone": false,
@@ -178,6 +200,7 @@
   "VN-HIGHLANDS": {
     "country": "VN",
     "name": "Central Highlands",
+    "short": "Highlands",
     "lat": 11.9,
     "lon": 108.4,
     "aurora_zone": false,
@@ -186,6 +209,7 @@
   "VN-SOUTH": {
     "country": "VN",
     "name": "Southern Vietnam",
+    "short": "South",
     "lat": 10.8,
     "lon": 106.7,
     "aurora_zone": false,
@@ -194,6 +218,7 @@
   "GR-MAINLAND": {
     "country": "GR",
     "name": "Mainland Greece",
+    "short": "Mainland",
     "lat": 39.1,
     "lon": 23.7,
     "aurora_zone": false,
@@ -202,6 +227,7 @@
   "GR-ISLANDS": {
     "country": "GR",
     "name": "Greek Islands",
+    "short": "Islands",
     "lat": 37.1,
     "lon": 25.4,
     "aurora_zone": false,
@@ -210,6 +236,7 @@
   "TH-NORTH": {
     "country": "TH",
     "name": "Northern Thailand",
+    "short": "North",
     "lat": 18.8,
     "lon": 98.9,
     "aurora_zone": false,
@@ -218,6 +245,7 @@
   "TH-CENTRAL": {
     "country": "TH",
     "name": "Central Thailand",
+    "short": "Central",
     "lat": 13.8,
     "lon": 100.5,
     "aurora_zone": false,
@@ -226,6 +254,7 @@
   "TH-SOUTH": {
     "country": "TH",
     "name": "Southern Thailand",
+    "short": "South",
     "lat": 7.9,
     "lon": 98.3,
     "aurora_zone": false,
@@ -234,6 +263,7 @@
   "IN-NORTH": {
     "country": "IN",
     "name": "Northern Plains",
+    "short": "North",
     "lat": 27.2,
     "lon": 78.0,
     "aurora_zone": false,
@@ -242,6 +272,7 @@
   "IN-SOUTH": {
     "country": "IN",
     "name": "South India",
+    "short": "South",
     "lat": 10.5,
     "lon": 76.2,
     "aurora_zone": false,
@@ -250,6 +281,7 @@
   "IN-HIMALAYA": {
     "country": "IN",
     "name": "Himalayan Region",
+    "short": "Himalaya",
     "lat": 32.2,
     "lon": 77.2,
     "aurora_zone": false,
@@ -258,6 +290,7 @@
   "IN-EAST": {
     "country": "IN",
     "name": "Eastern India",
+    "short": "East",
     "lat": 22.6,
     "lon": 88.4,
     "aurora_zone": false,
@@ -266,6 +299,7 @@
   "US-NORTHEAST": {
     "country": "US",
     "name": "Northeast",
+    "short": "Northeast",
     "lat": 40.7,
     "lon": -74.0,
     "aurora_zone": false,
@@ -274,6 +308,7 @@
   "US-SOUTHEAST": {
     "country": "US",
     "name": "Southeast",
+    "short": "Southeast",
     "lat": 30.3,
     "lon": -81.7,
     "aurora_zone": false,
@@ -282,6 +317,7 @@
   "US-MIDWEST": {
     "country": "US",
     "name": "Midwest",
+    "short": "Midwest",
     "lat": 41.9,
     "lon": -87.6,
     "aurora_zone": false,
@@ -290,6 +326,7 @@
   "US-WEST": {
     "country": "US",
     "name": "West Coast",
+    "short": "West",
     "lat": 37.8,
     "lon": -122.4,
     "aurora_zone": false,
@@ -298,6 +335,7 @@
   "US-SOUTHWEST": {
     "country": "US",
     "name": "Southwest",
+    "short": "Southwest",
     "lat": 36.1,
     "lon": -111.8,
     "aurora_zone": false,
@@ -306,6 +344,7 @@
   "US-HAWAII": {
     "country": "US",
     "name": "Hawaii",
+    "short": "Hawaii",
     "lat": 21.3,
     "lon": -157.8,
     "aurora_zone": false,
@@ -314,6 +353,7 @@
   "US-ALASKA": {
     "country": "US",
     "name": "Alaska",
+    "short": "Alaska",
     "lat": 61.2,
     "lon": -149.9,
     "aurora_zone": true,
@@ -322,6 +362,7 @@
   "CA-EAST": {
     "country": "CA",
     "name": "Eastern Canada",
+    "short": "East",
     "lat": 45.5,
     "lon": -73.6,
     "aurora_zone": false,
@@ -330,6 +371,7 @@
   "CA-WEST": {
     "country": "CA",
     "name": "British Columbia",
+    "short": "BC",
     "lat": 49.3,
     "lon": -123.1,
     "aurora_zone": false,
@@ -338,6 +380,7 @@
   "CA-ROCKIES": {
     "country": "CA",
     "name": "Canadian Rockies",
+    "short": "Rockies",
     "lat": 51.5,
     "lon": -116.1,
     "aurora_zone": false,
@@ -346,6 +389,7 @@
   "CA-NORTH": {
     "country": "CA",
     "name": "Northern Canada",
+    "short": "North",
     "lat": 60.7,
     "lon": -135.1,
     "aurora_zone": true,
@@ -354,6 +398,7 @@
   "BR-SOUTHEAST": {
     "country": "BR",
     "name": "Southeast Brazil",
+    "short": "Southeast",
     "lat": -22.9,
     "lon": -43.2,
     "aurora_zone": false,
@@ -362,6 +407,7 @@
   "BR-NORTHEAST": {
     "country": "BR",
     "name": "Northeast Brazil",
+    "short": "Northeast",
     "lat": -8.1,
     "lon": -34.9,
     "aurora_zone": false,
@@ -370,6 +416,7 @@
   "BR-AMAZON": {
     "country": "BR",
     "name": "Amazon",
+    "short": "Amazon",
     "lat": -3.1,
     "lon": -60.0,
     "aurora_zone": false,
@@ -378,6 +425,7 @@
   "BR-PANTANAL": {
     "country": "BR",
     "name": "Pantanal & South",
+    "short": "Pantanal",
     "lat": -16.4,
     "lon": -56.1,
     "aurora_zone": false,
@@ -386,6 +434,7 @@
   "CN-NORTH": {
     "country": "CN",
     "name": "Northern China",
+    "short": "North",
     "lat": 39.9,
     "lon": 116.4,
     "aurora_zone": false,
@@ -394,6 +443,7 @@
   "CN-SOUTH": {
     "country": "CN",
     "name": "Southern China",
+    "short": "South",
     "lat": 23.1,
     "lon": 113.3,
     "aurora_zone": false,
@@ -402,6 +452,7 @@
   "CN-SOUTHWEST": {
     "country": "CN",
     "name": "Southwest China",
+    "short": "Southwest",
     "lat": 25.0,
     "lon": 102.7,
     "aurora_zone": false,
@@ -410,6 +461,7 @@
   "CN-HAINAN": {
     "country": "CN",
     "name": "Hainan",
+    "short": "Hainan",
     "lat": 18.2,
     "lon": 109.5,
     "aurora_zone": false,
@@ -418,6 +470,7 @@
   "ZA-CAPE": {
     "country": "ZA",
     "name": "Western Cape",
+    "short": "Cape",
     "lat": -33.9,
     "lon": 18.4,
     "aurora_zone": false,
@@ -426,6 +479,7 @@
   "ZA-MAINLAND": {
     "country": "ZA",
     "name": "Mainland South Africa",
+    "short": "Mainland",
     "lat": -25.7,
     "lon": 28.2,
     "aurora_zone": false,
@@ -434,6 +488,7 @@
   "TR-ISTANBUL": {
     "country": "TR",
     "name": "Istanbul & Aegean",
+    "short": "Istanbul",
     "lat": 39.5,
     "lon": 28.0,
     "aurora_zone": false,
@@ -442,6 +497,7 @@
   "TR-COAST": {
     "country": "TR",
     "name": "Mediterranean Coast",
+    "short": "Coast",
     "lat": 36.9,
     "lon": 30.7,
     "aurora_zone": false,
@@ -450,6 +506,7 @@
   "TR-INTERIOR": {
     "country": "TR",
     "name": "Interior & Cappadocia",
+    "short": "Interior",
     "lat": 38.6,
     "lon": 34.8,
     "aurora_zone": false,
@@ -458,6 +515,7 @@
   "MY-PENINSULA": {
     "country": "MY",
     "name": "Peninsular Malaysia",
+    "short": "Peninsula",
     "lat": 3.1,
     "lon": 101.7,
     "aurora_zone": false,
@@ -466,6 +524,7 @@
   "MY-BORNEO": {
     "country": "MY",
     "name": "Malaysian Borneo",
+    "short": "Borneo",
     "lat": 5.9,
     "lon": 116.1,
     "aurora_zone": false,
@@ -474,6 +533,7 @@
   "ID-WEST": {
     "country": "ID",
     "name": "Western Indonesia",
+    "short": "West",
     "lat": -7.3,
     "lon": 110.4,
     "aurora_zone": false,
@@ -482,6 +542,7 @@
   "ID-BALI": {
     "country": "ID",
     "name": "Bali & Lombok",
+    "short": "Bali",
     "lat": -8.4,
     "lon": 115.2,
     "aurora_zone": false,
@@ -490,6 +551,7 @@
   "ID-EAST": {
     "country": "ID",
     "name": "Eastern Indonesia",
+    "short": "East",
     "lat": -8.5,
     "lon": 119.5,
     "aurora_zone": false,
@@ -498,6 +560,7 @@
   "NZ-NORTH": {
     "country": "NZ",
     "name": "North Island",
+    "short": "North",
     "lat": -37.0,
     "lon": 175.5,
     "aurora_zone": false,
@@ -506,6 +569,7 @@
   "NZ-SOUTH": {
     "country": "NZ",
     "name": "South Island",
+    "short": "South",
     "lat": -44.0,
     "lon": 170.5,
     "aurora_zone": false,
@@ -514,6 +578,7 @@
   "MX-CENTRAL": {
     "country": "MX",
     "name": "Central Highlands",
+    "short": "Central",
     "lat": 19.4,
     "lon": -99.1,
     "aurora_zone": false,
@@ -522,6 +587,7 @@
   "MX-YUCATAN": {
     "country": "MX",
     "name": "Yucatan & Caribbean",
+    "short": "Yucatan",
     "lat": 20.6,
     "lon": -87.1,
     "aurora_zone": false,
@@ -530,6 +596,7 @@
   "MX-PACIFIC": {
     "country": "MX",
     "name": "Pacific Coast",
+    "short": "Pacific",
     "lat": 20.7,
     "lon": -105.2,
     "aurora_zone": false,
@@ -538,6 +605,7 @@
   "ES-MAINLAND": {
     "country": "ES",
     "name": "Mainland Spain",
+    "short": "Mainland",
     "lat": 40.4,
     "lon": -3.7,
     "aurora_zone": false,
@@ -546,6 +614,7 @@
   "ES-CANARIES": {
     "country": "ES",
     "name": "Canary Islands",
+    "short": "Canaries",
     "lat": 28.1,
     "lon": -15.4,
     "aurora_zone": false,
@@ -554,6 +623,7 @@
   "IT-NORTH": {
     "country": "IT",
     "name": "Northern Italy",
+    "short": "North",
     "lat": 45.5,
     "lon": 10.5,
     "aurora_zone": false,
@@ -562,6 +632,7 @@
   "IT-CENTRAL": {
     "country": "IT",
     "name": "Central Italy",
+    "short": "Central",
     "lat": 43.8,
     "lon": 11.2,
     "aurora_zone": false,
@@ -570,6 +641,7 @@
   "IT-SOUTH": {
     "country": "IT",
     "name": "Southern Italy & Sicily",
+    "short": "South",
     "lat": 37.6,
     "lon": 14.0,
     "aurora_zone": false,
@@ -578,6 +650,7 @@
   "PE-COAST": {
     "country": "PE",
     "name": "Coastal Desert",
+    "short": "Coast",
     "lat": -12.1,
     "lon": -77.0,
     "aurora_zone": false,
@@ -586,6 +659,7 @@
   "PE-HIGHLANDS": {
     "country": "PE",
     "name": "Andes Highlands",
+    "short": "Highlands",
     "lat": -13.5,
     "lon": -71.9,
     "aurora_zone": false,
@@ -594,6 +668,7 @@
   "PE-AMAZON": {
     "country": "PE",
     "name": "Amazon Basin",
+    "short": "Amazon",
     "lat": -3.7,
     "lon": -73.3,
     "aurora_zone": false,
@@ -602,6 +677,7 @@
   "CO-BOGOTA": {
     "country": "CO",
     "name": "Andean Highlands",
+    "short": "Andes",
     "lat": 4.7,
     "lon": -74.1,
     "aurora_zone": false,
@@ -610,6 +686,7 @@
   "CO-CARIBBEAN": {
     "country": "CO",
     "name": "Caribbean Coast",
+    "short": "Caribbean",
     "lat": 10.4,
     "lon": -75.5,
     "aurora_zone": false,
@@ -618,6 +695,7 @@
   "CO-AMAZON": {
     "country": "CO",
     "name": "Amazon & Llanos",
+    "short": "Amazon",
     "lat": -1.0,
     "lon": -73.0,
     "aurora_zone": false,
@@ -626,6 +704,7 @@
   "RU-WEST": {
     "country": "RU",
     "name": "Western Russia",
+    "short": "West",
     "lat": 59.9,
     "lon": 30.3,
     "aurora_zone": false,
@@ -634,6 +713,7 @@
   "RU-SIBERIA": {
     "country": "RU",
     "name": "Siberia",
+    "short": "Siberia",
     "lat": 51.9,
     "lon": 104.9,
     "aurora_zone": false,
@@ -642,6 +722,7 @@
   "RU-NORTH": {
     "country": "RU",
     "name": "Russian Arctic",
+    "short": "Arctic",
     "lat": 68.9,
     "lon": 33.1,
     "aurora_zone": true,
@@ -650,9 +731,28 @@
   "RU-EAST": {
     "country": "RU",
     "name": "Russian Far East",
+    "short": "Far East",
     "lat": 43.1,
     "lon": 131.9,
     "aurora_zone": false,
     "description": "Vladivostok, Kamchatka, Sakhalin — Pacific volcanoes, geysers, end of Trans-Siberian"
+  },
+  "PT-MAINLAND": {
+    "country": "PT",
+    "name": "Mainland Portugal",
+    "short": "Mainland",
+    "lat": 39.3,
+    "lon": -9.1,
+    "aurora_zone": false,
+    "description": "Lisbon, Porto, Algarve — Mediterranean coast, tiles, port wine, Atlantic beaches"
+  },
+  "PT-MADEIRA": {
+    "country": "PT",
+    "name": "Madeira",
+    "short": "Madeira",
+    "lat": 32.6,
+    "lon": -16.9,
+    "aurora_zone": false,
+    "description": "Funchal, levada trails, laurel forests — subtropical Atlantic island, eternal spring"
   }
 }

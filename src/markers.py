@@ -26,7 +26,7 @@ from typing import Any
 import geopandas as gpd
 from shapely.geometry import Point, mapping
 
-AREA_THRESHOLD_KM2: float = 500.0
+AREA_THRESHOLD_KM2: float = 1000.0
 
 OUTPUT_DIR = Path(__file__).resolve().parent.parent / "output"
 MERGED_GEOJSON = OUTPUT_DIR / "merged.geojson"
