@@ -791,6 +791,15 @@
     "aurora_zone": true,
     "description": "Murmansk, Kola Peninsula — aurora capital of Russia, polar night, icebreakers"
   },
+  "RU-KALININGRAD": {
+    "country": "RU",
+    "name": "Kaliningrad",
+    "short": "Kaliningrad",
+    "lat": 54.7,
+    "lon": 20.5,
+    "aurora_zone": false,
+    "description": "Kaliningrad, Curonian Spit — Baltic exclave, amber coast, Prussian heritage, EU-surrounded"
+  },
   "RU-EAST": {
     "country": "RU",
     "name": "Russian Far East",

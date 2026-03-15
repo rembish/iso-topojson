@@ -226,6 +226,7 @@
     "default": "RU-WEST",
     "exclude": {"names": ["Crimea", "Sevastopol"], "transfer_to": "UA"},
     "overrides": {
+      "RU-KALININGRAD": {"names": ["Kaliningrad"]},
       "RU-EAST": {"names": ["Chukchi Autonomous Okrug"], "lon_min": 125.0},
       "RU-SIBERIA": {"lon_min": 75.0},
       "RU-NORTH": {"names": ["Murmansk", "Arkhangel'sk", "Nenets", "Yamalo-Nenets", "Komi"]}
