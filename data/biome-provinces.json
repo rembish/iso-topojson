@@ -218,7 +218,8 @@
     "adm0_a3": "PRT",
     "default": "PT-MAINLAND",
     "overrides": {
-      "PT-MADEIRA": {"names": ["Madeira"]}
+      "PT-MADEIRA": {"names": ["Madeira"]},
+      "PT-AZORES": {"names": ["Azores"]}
     }
   }
 }

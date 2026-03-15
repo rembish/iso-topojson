@@ -754,5 +754,14 @@
     "lon": -16.9,
     "aurora_zone": false,
     "description": "Funchal, levada trails, laurel forests — subtropical Atlantic island, eternal spring"
+  },
+  "PT-AZORES": {
+    "country": "PT",
+    "name": "Azores",
+    "short": "Azores",
+    "lat": 37.7,
+    "lon": -25.7,
+    "aurora_zone": false,
+    "description": "Ponta Delgada, São Miguel, Faial — volcanic islands, whale watching, hot springs, lush green"
   }
 }
