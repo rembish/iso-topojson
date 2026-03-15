@@ -358,6 +358,89 @@ def test_build_biome_features_exclude_transfer(
     assert len(transfers["XX"]) == 1
 
 
+def test_build_biome_features_su_a3_override(
+    two_province_admin1: gpd.GeoDataFrame,
+    test_country_features: dict[str, dict[str, Any]],
+    tmp_path: Path,
+    monkeypatch,
+) -> None:
+    """su_a3 override extracts geometry from subunits and subtracts from default."""
+    import src.build_biomes as bb
+
+    # Create a fake subunits shapefile
+    su_gdf = gpd.GeoDataFrame(
+        {"SU_A3": ["TSX"], "NAME": ["Test Subunit"]},
+        geometry=[box(8, 15, 10, 20)],  # overlaps with North Province
+        crs="EPSG:4326",
+    )
+    su_path = tmp_path / "ne_10m_admin_0_map_subunits.shp"
+    su_gdf.to_file(su_path)
+    monkeypatch.setattr(bb, "DATA_DIR", tmp_path)
+
+    biomes = {
+        "TS-MAIN": {"country": "TS", "name": "Main", "aurora_zone": False, "lat": 10, "lon": 5},
+        "TS-SUB": {"country": "TS", "name": "Subunit", "aurora_zone": False, "lat": 17, "lon": 9},
+    }
+    config = {
+        "TS": {
+            "adm0_a3": "TST",
+            "default": "TS-MAIN",
+            "overrides": {"TS-SUB": {"su_a3": "TSX"}},
+        }
+    }
+    result, _ = build_biome_features(two_province_admin1, biomes, config, test_country_features)
+    assert "TS-SUB" in result
+    assert "TS-MAIN" in result
+    assert result["TS-SUB"]["properties"]["name"] == "Subunit"
+
+
+def test_build_biome_features_gap_creates_unbuilt(
+    two_province_admin1: gpd.GeoDataFrame,
+) -> None:
+    """Gap geometry is assigned to an unbuilt biome using lat/lon anchor."""
+    # Country polygon is larger than admin-1 union — the extra area is a gap
+    country_features = {
+        "TS": {
+            "type": "Feature",
+            "properties": {
+                "iso_a2": "TS",
+                "iso_a3": "TST",
+                "iso_n3": 999,
+                "sovereign": "Testland",
+                "type": "country",
+            },
+            "geometry": mapping(box(-5, -5, 10, 20)),  # extends beyond admin-1
+        }
+    }
+    biomes = {
+        "TS-NORTH": {
+            "country": "TS",
+            "name": "Northern",
+            "aurora_zone": False,
+            "lat": 17.5,
+            "lon": 5,
+        },
+        "TS-GAP": {
+            "country": "TS",
+            "name": "Gap Zone",
+            "aurora_zone": False,
+            "lat": -2,
+            "lon": -2,
+        },
+    }
+    config = {
+        "TS": {
+            "adm0_a3": "TST",
+            "default": "TS-NORTH",
+            "overrides": {},
+        }
+    }
+    result, _ = build_biome_features(two_province_admin1, biomes, config, country_features)
+    # TS-GAP should be created from the gap (the part of country not covered by admin-1)
+    assert "TS-GAP" in result
+    assert result["TS-GAP"]["properties"]["name"] == "Gap Zone"
+
+
 # ---------------------------------------------------------------------------
 # _sanitize
 # ---------------------------------------------------------------------------

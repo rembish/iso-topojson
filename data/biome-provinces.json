@@ -221,5 +221,12 @@
       "PT-MADEIRA": {"names": ["Madeira"]},
       "PT-AZORES": {"names": ["Azores"]}
     }
+  },
+  "YE": {
+    "adm0_a3": "YEM",
+    "default": "YE-MAINLAND",
+    "overrides": {
+      "YE-SOCOTRA": {"su_a3": "YES"}
+    }
   }
 }

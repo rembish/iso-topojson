@@ -763,5 +763,23 @@
     "lon": -25.7,
     "aurora_zone": false,
     "description": "Ponta Delgada, São Miguel, Faial — volcanic islands, whale watching, hot springs, lush green"
+  },
+  "YE-MAINLAND": {
+    "country": "YE",
+    "name": "Mainland Yemen",
+    "short": "Mainland",
+    "lat": 15.4,
+    "lon": 44.2,
+    "aurora_zone": false,
+    "description": "Sana'a, Aden — ancient cities, Arabian Peninsula, diverse landscapes"
+  },
+  "YE-SOCOTRA": {
+    "country": "YE",
+    "name": "Socotra",
+    "short": "Socotra",
+    "lat": 12.5,
+    "lon": 54.0,
+    "aurora_zone": false,
+    "description": "Dragon blood trees, endemic species — alien landscape, UNESCO, Indian Ocean archipelago"
   }
 }

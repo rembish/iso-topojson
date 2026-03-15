@@ -217,7 +217,14 @@ def build_biome_features(
         parent = country_features.get(iso_a2, {}).get("properties", {})
 
         # Dissolve each biome's provinces into a single geometry
+        su_a3_biomes: list[tuple[str, str]] = []  # (biome_id, su_a3_code)
         for biome_id in biome_ids:
+            # Check for su_a3 override (extract from subunits layer instead)
+            rule = overrides.get(biome_id, {})
+            if "su_a3" in rule:
+                su_a3_biomes.append((biome_id, rule["su_a3"]))
+                continue
+
             indices = assignments.get(biome_id, [])
             if not indices:
                 print(f"    WARN: no provinces assigned to {biome_id}")
@@ -249,6 +256,36 @@ def build_biome_features(
             built[biome_id] = to_feature(geom, props)
             print(f"    + {biome_id}: {biome_info['name']} ({len(indices)} provinces)")
 
+        # Handle su_a3 overrides: extract from subunits, subtract from default
+        if su_a3_biomes:
+            subunits_gdf = gpd.read_file(DATA_DIR / "ne_10m_admin_0_map_subunits.shp")
+            for biome_id, su_code in su_a3_biomes:
+                su_rows = subunits_gdf[subunits_gdf["SU_A3"] == su_code]
+                if len(su_rows) == 0:
+                    print(f"    WARN: SU_A3={su_code} not found for {biome_id}")
+                    continue
+                su_geom = su_rows.dissolve().geometry.iloc[0]
+                biome_info = biomes[biome_id]
+                su_props: dict[str, Any] = {
+                    "biome_id": biome_id,
+                    "iso_a2": iso_a2,
+                    "iso_a3": parent.get("iso_a3"),
+                    "iso_n3": parent.get("iso_n3"),
+                    "name": biome_info["name"],
+                    "short": biome_info.get("short"),
+                    "sovereign": parent.get("sovereign"),
+                    "type": parent.get("type"),
+                    "aurora_zone": biome_info.get("aurora_zone", False),
+                }
+                built[biome_id] = to_feature(su_geom, su_props)
+                print(f"    + {biome_id}: {biome_info['name']} (from SU_A3={su_code})")
+                # Subtract from default biome to avoid overlap
+                if default_biome in built:
+                    default_geom = shape(built[default_biome]["geometry"])
+                    trimmed = default_geom.difference(su_geom)
+                    if not trimmed.is_empty:
+                        built[default_biome]["geometry"] = mapping(trimmed)
+
         # Fill gaps: disputed areas in the original polygon but not in admin-1
         # Skip if this country has excludes (those gaps are intentional)
         orig_feat = country_features.get(iso_a2)
@@ -260,17 +297,45 @@ def build_biome_features(
                 biome_union = unary_union(biome_geoms)
                 gap = orig_geom.difference(biome_union)
                 if not gap.is_empty and gap.area > 0.001:
-                    # Find nearest biome by centroid distance
                     gap_centroid = gap.centroid
-                    nearest_bid = min(
-                        country_biome_ids,
-                        key=lambda bid: shape(built[bid]["geometry"]).centroid.distance(
-                            gap_centroid
-                        ),
-                    )
-                    patched = unary_union([shape(built[nearest_bid]["geometry"]), gap])
-                    built[nearest_bid]["geometry"] = mapping(patched)
-                    print(f"    ~ patched {gap.area:.3f} sq deg gap into {nearest_bid}")
+                    # Consider both built biomes and unbuilt ones (using lat/lon anchors)
+                    all_candidates = list(country_biome_ids)
+                    unbuilt = [bid for bid in biome_ids if bid not in built]
+                    all_candidates.extend(unbuilt)
+
+                    gc = gap_centroid  # bind for closure
+
+                    def _dist(bid: str, gc: Any = gc) -> float:
+                        if bid in built:
+                            d: float = shape(built[bid]["geometry"]).centroid.distance(gc)
+                            return d
+                        info = biomes[bid]
+                        anchor = Point(info["lon"], info["lat"])
+                        d2: float = anchor.distance(gc)
+                        return d2
+
+                    nearest_bid = min(all_candidates, key=_dist)
+                    if nearest_bid in built:
+                        patched = unary_union([shape(built[nearest_bid]["geometry"]), gap])
+                        built[nearest_bid]["geometry"] = mapping(patched)
+                        print(f"    ~ patched {gap.area:.3f} sq deg gap into {nearest_bid}")
+                    else:
+                        # Create new biome feature from gap geometry
+                        biome_info = biomes[nearest_bid]
+                        gap_props: dict[str, Any] = {
+                            "biome_id": nearest_bid,
+                            "iso_a2": iso_a2,
+                            "iso_a3": parent.get("iso_a3"),
+                            "iso_n3": parent.get("iso_n3"),
+                            "name": biome_info["name"],
+                            "short": biome_info.get("short"),
+                            "sovereign": parent.get("sovereign"),
+                            "type": parent.get("type"),
+                            "aurora_zone": biome_info.get("aurora_zone", False),
+                        }
+                        built[nearest_bid] = to_feature(gap, gap_props)
+                        nm = biome_info["name"]
+                        print(f"    + {nearest_bid}: {nm} (gap, {gap.area:.3f} sq deg)")
 
     return built, transfers
 
