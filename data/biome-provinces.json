@@ -52,7 +52,8 @@
     "overrides": {
       "AU-QUEENSLAND": {"names": ["Queensland"]},
       "AU-WEST": {"names": ["Western Australia"]},
-      "AU-CENTRE": {"names": ["Northern Territory"]}
+      "AU-CENTRE": {"names": ["Northern Territory"]},
+      "AU-TASMANIA": {"names": ["Tasmania"]}
     }
   },
   "VN": {

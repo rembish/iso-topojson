@@ -179,6 +179,15 @@
     "aurora_zone": false,
     "description": "Perth, Margaret River, Ningaloo — Mediterranean coast, wildflowers, whale sharks"
   },
+  "AU-TASMANIA": {
+    "country": "AU",
+    "name": "Tasmania",
+    "short": "Tasmania",
+    "lat": -42.0,
+    "lon": 146.5,
+    "aurora_zone": false,
+    "description": "Hobart, Cradle Mountain, Port Arthur — temperate wilderness, convict history, southern lights"
+  },
   "VN-NORTH": {
     "country": "VN",
     "name": "Northern Vietnam",
