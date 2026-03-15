@@ -170,7 +170,7 @@
 
     let topology;
     try {
-      const resp = await fetch(url);
+      const resp = await fetch(url + '?t=' + Date.now());
       if (!resp.ok) {
         const hint = url.includes("biomes") ? " — run: make build-biomes" : "";
         throw new Error(`HTTP ${resp.status}${hint}`);

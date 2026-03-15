@@ -12,7 +12,13 @@ if TYPE_CHECKING:
 import geopandas as gpd
 from shapely.geometry import Point, box, mapping
 
-from src.markers import AREA_THRESHOLD_KM2, _quantize, build_markers_collection, inject_points
+from src.markers import (
+    AREA_THRESHOLD_KM2,
+    _quantize,
+    _safe_centroid,
+    build_markers_collection,
+    inject_points,
+)
 
 
 def _make_gdf(geoms: list, crs: str = "EPSG:4326") -> gpd.GeoDataFrame:
@@ -27,6 +33,27 @@ def _make_gdf(geoms: list, crs: str = "EPSG:4326") -> gpd.GeoDataFrame:
             }
         )
     return gpd.GeoDataFrame(rows, geometry=geoms, crs=crs)
+
+
+def test_safe_centroid_normal_geometry() -> None:
+    """Non-antimeridian geometry returns normal centroid."""
+    geom = box(10, 20, 30, 40)
+    c = _safe_centroid(geom)
+    assert abs(c.x - 20.0) < 0.01
+    assert abs(c.y - 30.0) < 0.01
+
+
+def test_safe_centroid_antimeridian() -> None:
+    """Geometry spanning the antimeridian gets a Pacific centroid, not Atlantic."""
+    from shapely.geometry import MultiPolygon
+
+    # Simulate Kiribati-like: western atolls near -174, eastern near +176
+    west = box(-175, -2, -174, 2)
+    east = box(175, -2, 176, 2)
+    geom = MultiPolygon([west, east])
+    c = _safe_centroid(geom)
+    # Centroid should be near the antimeridian (around +/-180), not in the Atlantic
+    assert c.x < -170 or c.x > 170
 
 
 def test_area_threshold_is_1000() -> None:

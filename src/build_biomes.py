@@ -29,7 +29,7 @@ from shapely.geometry import Point, mapping, shape
 from shapely.ops import unary_union
 
 from .category_b import _match_provinces
-from .markers import AREA_THRESHOLD_KM2, inject_points, run_mapshaper
+from .markers import AREA_THRESHOLD_KM2, _safe_centroid, inject_points, run_mapshaper
 from .utils import to_feature
 
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
@@ -322,7 +322,7 @@ def apply_markers(
         else:
             area_km2 = geom_ea.area / 1_000_000.0
             if area_km2 < AREA_THRESHOLD_KM2:
-                centroid: Point = geom_wgs.centroid
+                centroid: Point = _safe_centroid(geom_wgs)
                 props["marker"] = True
                 props["area_km2"] = round(area_km2, 1)
                 point_features.append(

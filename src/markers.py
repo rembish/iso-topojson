@@ -28,6 +28,38 @@ from shapely.geometry import Point, mapping
 
 AREA_THRESHOLD_KM2: float = 1000.0
 
+
+def _safe_centroid(geom: Any) -> Point:
+    """Compute centroid, handling geometries that span the antimeridian.
+
+    When a MultiPolygon spans from e.g. lon -174 to +176, the naive centroid
+    lands in the wrong hemisphere.  Shift western parts by +360, compute
+    centroid in the shifted space, then wrap back to [-180, 180].
+    """
+    from shapely import affinity
+
+    minx, _, maxx, _ = geom.bounds
+    if maxx - minx <= 180:
+        return geom.centroid
+
+    # Shift negative-longitude parts east by 360
+    parts = list(geom.geoms) if hasattr(geom, "geoms") else [geom]
+    shifted = []
+    for part in parts:
+        px = part.centroid.x
+        if px < 0:
+            shifted.append(affinity.translate(part, xoff=360))
+        else:
+            shifted.append(part)
+
+    from shapely.ops import unary_union
+
+    merged = unary_union(shifted)
+    c = merged.centroid
+    lon = c.x if c.x <= 180 else c.x - 360
+    return Point(lon, c.y)
+
+
 OUTPUT_DIR = Path(__file__).resolve().parent.parent / "output"
 MERGED_GEOJSON = OUTPUT_DIR / "merged.geojson"
 POINTS_ONLY_GEOJSON = OUTPUT_DIR / "points-only.geojson"
@@ -93,7 +125,7 @@ def build_markers_collection(
             area_km2 = geom_ea.area / 1_000_000.0  # m² → km²
 
             if area_km2 < AREA_THRESHOLD_KM2:
-                centroid: Point = geom_wgs.centroid
+                centroid: Point = _safe_centroid(geom_wgs)
                 props["marker"] = True
                 props["area_km2"] = round(area_km2, 1)
                 point_features.append(
