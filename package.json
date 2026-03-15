@@ -1,6 +1,6 @@
 {
   "name": "@rembish/iso-topojson",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "TopoJSON world map keyed by ISO 3166-1 alpha-2 codes (250 features)",
   "main": "iso-a2.json",
   "files": [
