@@ -26,7 +26,8 @@
     "default": "CL-CENTRAL",
     "overrides": {
       "CL-NORTH": {"lat_min": -28.0},
-      "CL-SOUTH": {"lat_max": -44.0}
+      "CL-SOUTH": {"lat_max": -44.0},
+      "CL-EASTERISLAND": {"su_a3": "CHP"}
     }
   },
   "AR": {

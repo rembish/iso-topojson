@@ -80,6 +80,15 @@
     "aurora_zone": false,
     "description": "Torres del Paine, Puerto Natales, Puerto Montt — glaciers, end of the world"
   },
+  "CL-EASTERISLAND": {
+    "country": "CL",
+    "name": "Easter Island",
+    "short": "Easter Is.",
+    "lat": -27.1,
+    "lon": -109.4,
+    "aurora_zone": false,
+    "description": "Rapa Nui — moai statues, Polynesian culture, remote Pacific island, UNESCO"
+  },
   "AR-PAMPAS": {
     "country": "AR",
     "name": "Buenos Aires & Pampas",
