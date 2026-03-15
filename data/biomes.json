@@ -188,6 +188,24 @@
     "aurora_zone": false,
     "description": "Hobart, Cradle Mountain, Port Arthur — temperate wilderness, convict history, southern lights"
   },
+  "EC-MAINLAND": {
+    "country": "EC",
+    "name": "Mainland Ecuador",
+    "short": "Mainland",
+    "lat": -1.8,
+    "lon": -78.2,
+    "aurora_zone": false,
+    "description": "Quito, Guayaquil, Cuenca — Andes highlands, Amazon basin, Pacific coast"
+  },
+  "EC-GALAPAGOS": {
+    "country": "EC",
+    "name": "Galápagos",
+    "short": "Galápagos",
+    "lat": -0.6,
+    "lon": -90.9,
+    "aurora_zone": false,
+    "description": "Santa Cruz, Isabela, San Cristóbal — unique wildlife, giant tortoises, marine iguanas, Darwin's islands"
+  },
   "VN-NORTH": {
     "country": "VN",
     "name": "Northern Vietnam",

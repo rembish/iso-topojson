@@ -56,6 +56,13 @@
       "AU-TASMANIA": {"names": ["Tasmania"]}
     }
   },
+  "EC": {
+    "adm0_a3": "ECU",
+    "default": "EC-MAINLAND",
+    "overrides": {
+      "EC-GALAPAGOS": {"names": ["Galápagos"]}
+    }
+  },
   "VN": {
     "adm0_a3": "VNM",
     "default": "VN-SOUTH",
