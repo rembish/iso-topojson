@@ -99,6 +99,7 @@
     "adm0_a3": "IND",
     "default": "IN-SOUTH",
     "overrides": {
+      "IN-ANDAMAN": {"names": ["Andaman and Nicobar"]},
       "IN-HIMALAYA": {"lat_min": 30.0, "lon_max": 80.0},
       "IN-EAST": {"lon_min": 85.0},
       "IN-NORTH": {"lat_min": 22.0}

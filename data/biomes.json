@@ -350,6 +350,15 @@
     "aurora_zone": false,
     "description": "Kolkata, Darjeeling, Sikkim — Bengal culture, tea gardens, gateway to Northeast"
   },
+  "IN-ANDAMAN": {
+    "country": "IN",
+    "name": "Andaman & Nicobar",
+    "short": "Andaman",
+    "lat": 11.1,
+    "lon": 93.0,
+    "aurora_zone": false,
+    "description": "Port Blair, Havelock, Neil — remote tropical archipelago, coral reefs, indigenous tribes, Bay of Bengal"
+  },
   "US-NORTHEAST": {
     "country": "US",
     "name": "Northeast",
