@@ -197,6 +197,24 @@
     "aurora_zone": false,
     "description": "Hobart, Cradle Mountain, Port Arthur — temperate wilderness, convict history, southern lights"
   },
+  "TZ-MAINLAND": {
+    "country": "TZ",
+    "name": "Mainland Tanzania",
+    "short": "Mainland",
+    "lat": -6.8,
+    "lon": 37.0,
+    "aurora_zone": false,
+    "description": "Dar es Salaam, Serengeti, Kilimanjaro, Ngorongoro — safari, Great Migration, highest peak in Africa"
+  },
+  "TZ-ZANZIBAR": {
+    "country": "TZ",
+    "name": "Zanzibar",
+    "short": "Zanzibar",
+    "lat": -6.1,
+    "lon": 39.3,
+    "aurora_zone": false,
+    "description": "Stone Town, Unguja, Pemba — spice island, turquoise waters, Swahili heritage, UNESCO old town"
+  },
   "EC-MAINLAND": {
     "country": "EC",
     "name": "Mainland Ecuador",

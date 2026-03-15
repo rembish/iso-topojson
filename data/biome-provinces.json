@@ -57,6 +57,13 @@
       "AU-TASMANIA": {"names": ["Tasmania"]}
     }
   },
+  "TZ": {
+    "adm0_a3": "TZA",
+    "default": "TZ-MAINLAND",
+    "overrides": {
+      "TZ-ZANZIBAR": {"names": ["Zanzibar South and Central", "Kaskazini-Unguja", "Zanzibar West", "Kusini-Pemba", "Kaskazini-Pemba"]}
+    }
+  },
   "EC": {
     "adm0_a3": "ECU",
     "default": "EC-MAINLAND",
