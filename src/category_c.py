@@ -167,20 +167,23 @@ def extract_group_remainder(
             if extra is not None:
                 subtract_geoms.append(extra)
 
-    if not subtract_geoms:
-        return to_feature(country_geom, make_properties(dest))
+    if subtract_geoms:
+        subtract_union = unary_union(subtract_geoms)
+        country_geom = country_geom.difference(subtract_union.buffer(0))
 
-    subtract_union = unary_union(subtract_geoms)
-    result = country_geom.difference(subtract_union.buffer(0))
+        if country_geom.is_empty:
+            print(f"  WARNING: group_remainder result empty for {dest['name']}")
+            return None
 
-    if result.is_empty:
-        print(f"  WARNING: group_remainder result empty for {dest['name']}")
-        return None
+        if not country_geom.is_valid:
+            country_geom = country_geom.buffer(0)
 
-    if not result.is_valid:
-        result = result.buffer(0)
+    for code in dest.get("merge_a3", []):
+        extra = get_country_geom(code, subunits_gdf, units_gdf)
+        if extra is not None:
+            country_geom = unary_union([country_geom, extra])
 
-    return to_feature(result, make_properties(dest))
+    return to_feature(country_geom, make_properties(dest))
 
 
 def extract_land_bbox(dest: IsoDestination) -> IsoFeature | None:
