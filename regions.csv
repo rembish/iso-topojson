@@ -75,7 +75,7 @@ DZ-SAH,Algerian Sahara,territory,Algeria,,,admin1,DZA,,Adrar;Tamanghasset;Illizi
 EC,Ecuador,country,Ecuador,ECU,218,direct,ECU,,,,,,,,,,,
 EE,Estonia,country,Estonia,EST,233,direct,EST,,,,,,,,,,,
 EG,Egypt,country,Egypt,EGY,818,direct,EGY,,,,,,,,,BRT,,
-EH,Western Sahara,disputed,Morocco/SADR,SAH,732,direct,SAH,,,,,,,,,,,
+XW,Western Sahara,disputed,Morocco/SADR,,,direct,SAH,,,,,,,,,,,
 ER,Eritrea,country,Eritrea,ERI,232,direct,ERI,,,,,,,,,,,
 ES,Spain,country,Spain,ESP,724,group_remainder,ESP,,,,,,,ES-CE;ES-CN;ES-IB;ES-ML,,,,
 ES-CE,Ceuta,territory,Spain,,,subunit,,SEC,,,,,,,,,,
