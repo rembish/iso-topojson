@@ -2,6 +2,9 @@ SHELL := /bin/bash
 VENV := .venv
 PYTHON := $(VENV)/bin/python
 PIP := $(VENV)/bin/pip
+# Variable simplification: features < 2000 km² (micro-states, tiny islands) keep
+# 50% of vertices; larger features keep 10%. Overriding SIMPLIFY only affects
+# the markers step; the simplify step always uses the variable expression.
 SIMPLIFY ?= 3%
 
 .PHONY: all venv download build simplify markers validate dist build-biomes dist-biomes serve clean format lint typecheck test check help
@@ -24,7 +27,8 @@ build: venv
 
 simplify: output/merged.geojson
 	npx mapshaper output/merged.geojson \
-		-simplify $(SIMPLIFY) weighted keep-shapes \
+		-each 'simplify_pct = this.area < 2e9 ? 0.5 : 0.1' \
+		-simplify variable percentage=simplify_pct weighted keep-shapes \
 		-o format=topojson output/iso-a2.json quantization=1e5
 
 markers: output/merged.geojson

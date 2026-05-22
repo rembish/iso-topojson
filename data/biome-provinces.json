@@ -84,7 +84,7 @@
     "adm0_a3": "GRC",
     "default": "GR-MAINLAND",
     "overrides": {
-      "GR-ISLANDS": {"names": ["Kriti", "Notio Aigaio", "Voreio Aigaio"]}
+      "GR-ISLANDS": {"names": ["Kriti", "Notio Aigaio", "Voreio Aigaio", "Ionioi Nisoi"]}
     }
   },
   "TH": {
