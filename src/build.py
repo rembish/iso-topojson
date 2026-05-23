@@ -18,6 +18,7 @@ from .category_c import (
     extract_group_remainder,
     extract_island_bbox,
     extract_land_bbox,
+    extract_lat_clip,
     generate_point,
 )
 from .destinations import get_destinations
@@ -147,6 +148,9 @@ def _extract_feature(
 
     elif strategy == "land_bbox":
         return extract_land_bbox(dest)
+
+    elif strategy == "lat_clip":
+        return extract_lat_clip(dest, subunits, units)
 
     elif strategy == "point":
         return generate_point(dest)

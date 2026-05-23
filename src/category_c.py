@@ -186,6 +186,51 @@ def extract_group_remainder(
     return to_feature(country_geom, make_properties(dest))
 
 
+def extract_lat_clip(
+    dest: IsoDestination,
+    subunits_gdf: gpd.GeoDataFrame,
+    units_gdf: gpd.GeoDataFrame,
+) -> IsoFeature | None:
+    """Clip a parent admin_0 feature to a bounding box (typically a lat strip).
+
+    Intersects the parent country polygon with the bbox rectangle and returns
+    the result.  Used to extract the Moroccan-administered Western Sahara (EH)
+    from the MAR polygon along the 27°40'N treaty parallel.
+
+    Args:
+        dest: Destination config dict; must have ``parent_adm0_a3`` and ``bbox``.
+        subunits_gdf: Natural Earth admin_0_map_subunits GeoDataFrame.
+        units_gdf: Natural Earth admin_0_map_units GeoDataFrame.
+
+    Returns:
+        A GeoJSON Feature dict, or None if the parent is not found or the
+        intersection is empty.
+    """
+    parent_adm0: str | None = dest.get("parent_adm0_a3")
+    bbox: tuple[float, float, float, float] | None = dest.get("bbox")
+
+    if not parent_adm0 or not bbox:
+        return None
+
+    parent_geom = get_country_geom(parent_adm0, subunits_gdf, units_gdf)
+    if parent_geom is None:
+        print(f"  WARNING: Parent feature not found for {dest['name']} (parent={parent_adm0})")
+        return None
+
+    west, south, east, north = bbox
+    clip_box = shapely_box(west, south, east, north)
+    clipped = parent_geom.intersection(clip_box)
+
+    if clipped.is_empty:
+        print(f"  WARNING: lat_clip intersection empty for {dest['name']}")
+        return None
+
+    if not clipped.is_valid:
+        clipped = clipped.buffer(0)
+
+    return to_feature(clipped, make_properties(dest))
+
+
 def extract_land_bbox(dest: IsoDestination) -> IsoFeature | None:
     """Extract a polygon from the NE physical land layer by bounding box.
 
