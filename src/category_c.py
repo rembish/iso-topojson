@@ -228,6 +228,11 @@ def extract_lat_clip(
     if not clipped.is_valid:
         clipped = clipped.buffer(0)
 
+    for code in dest.get("merge_a3", []):
+        extra = get_country_geom(code, subunits_gdf, units_gdf)
+        if extra is not None:
+            clipped = unary_union([clipped, extra])
+
     return to_feature(clipped, make_properties(dest))
 
 
