@@ -57,6 +57,7 @@ def test_strategies_are_valid() -> None:
         "disputed",
         "island_bbox",
         "land_bbox",
+        "lat_clip",
         "point",
     }
     for d in get_destinations():
